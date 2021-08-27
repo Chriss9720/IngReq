@@ -1,0 +1,10 @@
+{
+    "Nombre": "Mi Login",
+    "configBD": {
+        "HOST": "mongodb://localhost:27017/Requerimientos"
+    },
+    "ConfigTk": {
+        "SEED": "PSW",
+        "expired": "24h"
+    }
+}

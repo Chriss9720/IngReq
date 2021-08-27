@@ -1,0 +1,10 @@
+{
+    "Nombre": "Mi Login",
+    "configBD": {
+        "HOST": "mongodb+srv://root:root@cluster0.139jj.mongodb.net/Requerimientos?retryWrites=true&w=majority"
+    },
+    "ConfigTk": {
+        "SEED": "PSW",
+        "expired": "24h"
+    }
+}
