@@ -15,7 +15,8 @@ const Producto = new Schema({
     "Precio_Compra": { type: Number, default: 0 },
     "Descripcion": { type: String, default: "" },
     "Comentarios": [Comentarios],
-    "Vendedor": { type: Schema.Types.ObjectID, ref: "Vendedor" }
+    "Vendedor": { type: Schema.Types.ObjectID, ref: "Vendedor" },
+    "Etiquetas": [{ type: Schema.Types.ObjectID, ref: "Etiqueta" }]
 });
 
 module.exports = Mongoose.model("Producto", Producto);
