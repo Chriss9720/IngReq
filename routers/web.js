@@ -21,10 +21,22 @@ ruta.get('/', (req, res) => cargar('index', res));
 
 ruta.get('/RegistroVendedor', (req, res) => cargar('RegistroVendedor', res));
 
-ruta.get('/RegistroComprador', (req, res) => cargar('RegistroComprador', res))
+ruta.get('/RegistroComprador', (req, res) => cargar('RegistroComprador', res));
 
-ruta.get('/Comprador', auth, (req, res) => cargar('Comprador', res))
+ruta.get('/Comprador', auth, (req, res) => {
+    let data = req.data;
+    if (data.comprador)
+        cargar('Comprador', res);
+    else
+        res.status(401).json({ "msj": "Aceeso denegado" });
+});
 
-ruta.get('/Vendedor', auth, (req, res) => cargar('Vendedor', res))
+ruta.get('/Vendedor', auth, (req, res) => {
+    let data = req.data;
+    if (data.vendedor)
+        cargar('Vendedor', res);
+    else
+        res.status(401).json({ "msj": "Aceeso denegado" });
+});
 
 module.exports = ruta;

@@ -59,7 +59,7 @@ async function entrarComprador(ev) {
         error: (e) => {
             model();
             if (e.responseJSON) {
-                msj.innerText = e.responseJSON.error;
+                msj.innerText = e.responseJSON.msj;
             }
         }
     });
@@ -80,7 +80,7 @@ async function entrarVendedor(ev) {
     let msj = document.getElementById('ErrorMensaje');
     let entro;
     await $.ajax({
-        url: "/auth/Vendor",
+        url: "/auth/Vendedor",
         type: "post",
         data: login,
         datatype: "json",
@@ -91,7 +91,7 @@ async function entrarVendedor(ev) {
         error: (e) => {
             model();
             if (e.responseJSON) {
-                msj.innerText = e.responseJSON.error;
+                msj.innerText = e.responseJSON.msj;
             }
         }
     });

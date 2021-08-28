@@ -15,7 +15,7 @@ const verificarToken = (req, res, next) => {
         if (err) {
             return res.status(401).json({ "msj": "Aceeso denegado" });
         } else {
-            req.data = datos.usuario;
+            req.data = datos;
             next();
         }
     });

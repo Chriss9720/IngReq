@@ -9,7 +9,7 @@ const joiVendedor = Joi.object({
     NombreCompleto: Joi.string().pattern(/^[ña-zA-Z\s]+$/).required(),
     email: Joi.string().email({ minDomainSegments: 2, tlds: { allow: ["com", "mx"] } }).required(),
     Clave: Joi.string().min(3).max(30).pattern(/^[a-zA-Z0-9\.\$\#]+$/).required(),
-    Telefono: Joi.string().min(10).max(10).pattern(/[0-9]+/).required(),
+    Telefono: Joi.string().min(10).max(10).pattern(/^[0-9]+$/).required(),
     Curp: Joi.string().min(18).max(18).required(),
     Direccion: Joi.string().min(10).required()
 });

@@ -24,7 +24,7 @@ ruta.post('/Comprador', (req, res) => {
                 if (datos) {
                     let psw = bcrypt.compareSync(comprador.clave, datos.Clave);
                     if (psw) {
-                        let token = jwt.sign({ _id: datos._id }, config.get("ConfigTk.SEED"), { expiresIn: config.get("ConfigTk.expired") });
+                        let token = jwt.sign({ _id: datos._id, vendedor: false, comprador: true }, config.get("ConfigTk.SEED"), { expiresIn: config.get("ConfigTk.expired") });
                         res.json(token);
                     } else {
                         res.status(400).json({ msj: "Usuario o clave incorrectos" });
@@ -41,7 +41,7 @@ ruta.post('/Comprador', (req, res) => {
     }
 });
 
-ruta.post('/Vendor', (req, res) => {
+ruta.post('/Vendedor', (req, res) => {
     let vendor = req.body;
     let { error } = joiLogin.validate({
         email: vendor.email,
@@ -53,7 +53,7 @@ ruta.post('/Vendor', (req, res) => {
                 if (datos) {
                     let psw = bcrypt.compareSync(vendor.clave, datos.Clave);
                     if (psw) {
-                        let token = jwt.sign({ _id: datos._id }, config.get("ConfigTk.SEED"), { expiresIn: config.get("ConfigTk.expired") });
+                        let token = jwt.sign({ _id: datos._id, vendedor: true, comprador: false }, config.get("ConfigTk.SEED"), { expiresIn: config.get("ConfigTk.expired") });
                         res.json(token);
                     } else {
                         res.status(400).json({ msj: "Usuario o clave incorrectos" });
