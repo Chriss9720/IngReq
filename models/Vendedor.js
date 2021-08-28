@@ -2,10 +2,10 @@ const Mongoose = require("mongoose");
 const Schema = Mongoose.Schema;
 
 const Trabajadores = new Schema({
-    "Clave": { type: String, required: true },
+    "Clave": { type: String },
     "Entrada": [{ type: Date }],
-    "Telefono": { type: String, required: true },
-    "Direccion": { type: String, required: true }
+    "Telefono": { type: String },
+    "Direccion": { type: String }
 });
 
 const Vendido = new Schema({
@@ -14,10 +14,11 @@ const Vendido = new Schema({
 });
 
 const Vendedor = new Schema({
-    "Email": { type: String, required: true },
+    "NombreCompleto": { type: String, required: true },
+    "Email": { type: String, required: true, unique: true },
     "Clave": { type: String, required: true },
-    "Telefono": { type: String, required: true },
-    "Curp": { type: String, required: true },
+    "Telefono": { type: String, required: true, unique: true },
+    "Curp": { type: String, required: true, unique: true },
     "Direccion": { type: String, required: true },
     "Productos": [{ type: Schema.Types.ObjectId, ref: "Producto" }],
     "Vendidos": [Vendido],

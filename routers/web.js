@@ -3,8 +3,8 @@ const fs = require('fs');
 //const auth = require('../middlewares/auth');
 const ruta = express.Router();
 
-ruta.get('/', (req, res) => {
-    fs.readFile('public/html/index.html', (err, data) => {
+const cargar = (pagina, res) => {
+    fs.readFile(`public/html/${pagina}.html`, (err, data) => {
         if (err) {
             res.writeHead(404, { 'content-type': 'text/html' });
             res.write(err);
@@ -15,6 +15,10 @@ ruta.get('/', (req, res) => {
             res.end();
         }
     });
-})
+}
+
+ruta.get('/', (req, res) => cargar('index', res));
+
+ruta.get('/RegistroVendedor', (req, res) => cargar('RegistroVendedor', res));
 
 module.exports = ruta;

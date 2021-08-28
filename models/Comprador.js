@@ -6,14 +6,14 @@ const Carrito = new Schema({
 });
 
 const Comprador = new Schema({
-    "Email": { type: String, required: true },
+    "Email": { type: String, required: true, unique: true },
     "Clave": { type: String, required: true },
     "Carrito": [Carrito],
     "Nombre": { type: String, required: true },
     "Direccion": { type: String, required: true },
     "Edad": { type: Number, required: true },
     "FechaNacimiento": { type: Date, required: true },
-    "Telefono": { type: String }
+    "Telefono": { type: String, unique: true }
 });
 
 module.exports = Mongoose.model("Comprador", Comprador);
