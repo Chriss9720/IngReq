@@ -21,4 +21,6 @@ ruta.get('/', (req, res) => cargar('index', res));
 
 ruta.get('/RegistroVendedor', (req, res) => cargar('RegistroVendedor', res));
 
+ruta.get('/RegistroComprador', (req, res) => cargar('RegistroComprador', res))
+
 module.exports = ruta;

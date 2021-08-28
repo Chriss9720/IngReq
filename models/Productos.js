@@ -2,7 +2,7 @@ const Mongoose = require("mongoose");
 const Schema = Mongoose.Schema;
 
 const Comentarios = new Schema({
-    "Comentario": { type: String, required: true },
+    "Comentario": { type: String },
     "Like": { type: Number, default: 0 },
     "Comprador": { type: Schema.Types.ObjectID, ref: "Comprador" }
 });
