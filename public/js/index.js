@@ -46,12 +46,16 @@ async function entrarComprador(ev) {
         clave: getValue('claveComprador')
     };
     let msj = document.getElementById('ErrorMensaje');
-    $.ajax({
+    let entro;
+    await $.ajax({
         url: "/auth/Comprador",
         type: "post",
         data: login,
         datatype: "json",
-        success: (s) => console.log(s),
+        success: (s) => {
+            entro = true;
+            document.cookie = `token=${s};max-age=${(24 * 60 * 60)};path=/;`;
+        },
         error: (e) => {
             model();
             if (e.responseJSON) {
@@ -59,6 +63,8 @@ async function entrarComprador(ev) {
             }
         }
     });
+    if (entro)
+        this.submit();
 }
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -72,12 +78,16 @@ async function entrarVendedor(ev) {
         clave: getValue('claveVendedor')
     };
     let msj = document.getElementById('ErrorMensaje');
-    $.ajax({
+    let entro;
+    await $.ajax({
         url: "/auth/Vendor",
         type: "post",
         data: login,
         datatype: "json",
-        success: (s) => console.log(s),
+        success: (s) => {
+            entro = true;
+            document.cookie = `token=${s};max-age=${(24 * 60 * 60)};path=/;`;
+        },
         error: (e) => {
             model();
             if (e.responseJSON) {
@@ -85,6 +95,8 @@ async function entrarVendedor(ev) {
             }
         }
     });
+    if (entro)
+        this.submit();
 }
 
 const getValue = (id) => document.getElementById(id).value

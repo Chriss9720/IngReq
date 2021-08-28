@@ -1,6 +1,6 @@
 const express = require('express');
 const fs = require('fs');
-//const auth = require('../middlewares/auth');
+const auth = require('../middlewares/auth');
 const ruta = express.Router();
 
 const cargar = (pagina, res) => {
@@ -22,5 +22,9 @@ ruta.get('/', (req, res) => cargar('index', res));
 ruta.get('/RegistroVendedor', (req, res) => cargar('RegistroVendedor', res));
 
 ruta.get('/RegistroComprador', (req, res) => cargar('RegistroComprador', res))
+
+ruta.get('/Comprador', auth, (req, res) => cargar('Comprador', res))
+
+ruta.get('/Vendedor', auth, (req, res) => cargar('Vendedor', res))
 
 module.exports = ruta;
