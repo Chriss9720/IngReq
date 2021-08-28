@@ -52,9 +52,7 @@ async function registrar(ev) {
         Curp: getValue('curp'),
         Direccion: getValue('direccion')
     };
-    $('#msj').modal({
-        show: true
-    });
+    $('#msj').modal({ show: true });
     let dialog = document.getElementById('color');
     let msj = document.getElementById('ErrorMensaje');
     let titulo = document.getElementById('EjemploModal');

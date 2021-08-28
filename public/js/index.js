@@ -34,3 +34,59 @@ const ajustar = () => {
 window.addEventListener("resize", () => ajustar());
 
 ajustar();
+
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('AccesoCompradores').addEventListener('submit', entrarComprador);
+});
+
+async function entrarComprador(ev) {
+    ev.preventDefault();
+    let login = {
+        email: getValue('email'),
+        clave: getValue('claveComprador')
+    };
+    let msj = document.getElementById('ErrorMensaje');
+    $.ajax({
+        url: "/auth/Comprador",
+        type: "post",
+        data: login,
+        datatype: "json",
+        success: (s) => console.log(s),
+        error: (e) => {
+            model();
+            if (e.responseJSON) {
+                msj.innerText = e.responseJSON.error;
+            }
+        }
+    });
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('formVendedor').addEventListener('submit', entrarVendedor);
+});
+
+async function entrarVendedor(ev) {
+    ev.preventDefault();
+    let login = {
+        email: getValue('emailVendedor'),
+        clave: getValue('claveVendedor')
+    };
+    let msj = document.getElementById('ErrorMensaje');
+    $.ajax({
+        url: "/auth/Vendor",
+        type: "post",
+        data: login,
+        datatype: "json",
+        success: (s) => console.log(s),
+        error: (e) => {
+            model();
+            if (e.responseJSON) {
+                msj.innerText = e.responseJSON.error;
+            }
+        }
+    });
+}
+
+const getValue = (id) => document.getElementById(id).value
+
+const model = () => $('#msj').modal({ show: true })

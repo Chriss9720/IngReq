@@ -4,7 +4,7 @@ const config = require('config');
 const registroVendedor = require('./routers/Registro');
 const web = require('./routers/web');
 const fileUpload = require('express-fileupload');
-//const auth = require('./routers/auth');
+const auth = require('./routers/auth');
 const cookieParser = require('cookie-parser');
 
 mongoose.connect(config.get('configBD.HOST'), { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })
@@ -20,7 +20,7 @@ app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }));
 app.use('/', web);
 app.use('/api/registro', registroVendedor);
-//app.use('/auth', auth);
+app.use('/auth', auth);
 
 console.log(`${app.get('env')} ${config.get('configBD.HOST')}`);
 

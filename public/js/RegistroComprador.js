@@ -53,9 +53,7 @@ async function registrar(ev) {
         FechaNacimiento: getValue('fecha'),
         Telefono: getValue('numero')
     };
-    $('#msj').modal({
-        show: true
-    });
+    $('#msj').modal({ show: true });
     let dialog = document.getElementById('color');
     let msj = document.getElementById('ErrorMensaje');
     let titulo = document.getElementById('EjemploModal');
