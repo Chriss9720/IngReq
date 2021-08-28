@@ -8,8 +8,28 @@ const Joi = require('@hapi/joi');
 const ruta = express.Router();
 
 const joiLogin = Joi.object({
-    email: Joi.string().email({ minDomainSegments: 2, tlds: { allow: ["com", "mx"] } }).required(),
-    Clave: Joi.string().min(3).max(30).pattern(/^[a-zA-Z0-9\.\$\#]+$/).required()
+    email: Joi.string().email({ minDomainSegments: 2, tlds: { allow: ["com", "mx"] } }).required().error(errores => {
+        errores.forEach(e => {
+            switch (e.code) {
+                case "string.empty":
+                    e.message = "Ingrese su email";
+                    break;
+                case "string.domain":
+                    e.message = "Dominios permitos son: mx y com";
+                    break;
+                case "string.email":
+                    e.message = "Email incompleto";
+                    break;
+            }
+        });
+        return errores;
+    }),
+    Clave: Joi.string().required().error(errores => {
+        errores.forEach(e => {
+            e.message = "Ingrese su clave";
+        });
+        return errores;
+    })
 });
 
 ruta.post('/Comprador', (req, res) => {
@@ -37,7 +57,7 @@ ruta.post('/Comprador', (req, res) => {
             x => res.status(400).json({ msj: "Usuario o clave incorrectos" })
         );
     } else {
-        res.status(404).json({ error: error.details[0].message });
+        res.status(404).json({ msj: error.details[0].message });
     }
 });
 
@@ -66,7 +86,7 @@ ruta.post('/Vendedor', (req, res) => {
             x => res.status(400).json({ msj: "Usuario o clave incorrectos" })
         );
     } else {
-        res.status(404).json({ error: error.details[0].message });
+        res.status(404).json({ msj: error.details[0].message });
     }
 });
 
