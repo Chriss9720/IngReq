@@ -1,7 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const config = require('config');
-const registroVendedor = require('./routers/registroVendedor');
+const registroVendedor = require('./routers/Registro');
 const web = require('./routers/web');
 const fileUpload = require('express-fileupload');
 //const auth = require('./routers/auth');
@@ -19,7 +19,7 @@ app.use(express.json());
 app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }));
 app.use('/', web);
-app.use('/api/registroVendedor', registroVendedor);
+app.use('/api/registro', registroVendedor);
 //app.use('/auth', auth);
 
 console.log(`${app.get('env')} ${config.get('configBD.HOST')}`);

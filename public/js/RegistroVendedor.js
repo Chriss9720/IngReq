@@ -59,7 +59,7 @@ async function registrar(ev) {
     let msj = document.getElementById('ErrorMensaje');
     let titulo = document.getElementById('EjemploModal');
     await $.ajax({
-        url: "/api/registroVendedor/",
+        url: "/api/registro/Vendedor",
         type: "post",
         data: vendedor,
         datatype: "json",

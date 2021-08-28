@@ -44,6 +44,39 @@ document.addEventListener('DOMContentLoaded', function() {
 
 async function registrar(ev) {
     ev.preventDefault();
+    let comprador = {
+        Email: getValue('emailVendedor'),
+        Clave: getValue('claveVendedor'),
+        Nombre: getValue('Nombre'),
+        Direccion: getValue('direccion'),
+        Edad: getValue('edad'),
+        FechaNacimiento: getValue('fecha'),
+        Telefono: getValue('numero')
+    };
+    $('#msj').modal({
+        show: true
+    });
+    let dialog = document.getElementById('color');
+    let msj = document.getElementById('ErrorMensaje');
+    let titulo = document.getElementById('EjemploModal');
+    await $.ajax({
+        url: "/api/registro/Comprador",
+        type: "post",
+        data: comprador,
+        datatype: "json",
+        success: (s) => {
+            dialog.className = `modal-header bg-success`;
+            titulo.innerText = "Registro Exitoso";
+            msj.innerText = "Registro Exitoso";
+        },
+        error: (e) => {
+            dialog.className = `modal-header bg-danger`;
+            titulo.innerText = "Error";
+            if (e.responseJSON) {
+                msj.innerText = e.responseJSON.error;
+            }
+        }
+    });
 }
 
 const getValue = (id) => document.getElementById(id).value
