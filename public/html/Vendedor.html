@@ -12,7 +12,7 @@
     <!--Font-->
     <script src="https://kit.fontawesome.com/0b3284a19f.js" crossorigin="anonymous"></script>
     <!--Css-->
-    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/Vendedor.css">
     <title>Acceso</title>
 </head>
 
@@ -21,8 +21,185 @@
     <nav class="navbar navbar-expand-sm navbar-dark bg-dark p-0">
         <div class="container">
             <a href="/" class="navbar-brand">Mi Pagina</a>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item dropdown mr-3">
+                    <a href="" class="nav-link dropdown-toggle" data-toggle="dropdown">Bienvenido Jose <i class="fas fa-user"></i></a>
+                    <div class="dropdown-menu">
+                        <a href="perfil.html" class="dropdown-item hover"><i class="fas fa-user-circle"></i> perfil</a>
+                        <a href="#" class="dropdown-item hover"><i class="fas fa-cog"></i> Configuraciones</a>
+                        <a id="salir" href="/#" class="dropdown-item hover"><i class="fas fa-user-times"></i> Salir</a>
+                    </div>
+                </li>
+            </ul>
         </div>
     </nav>
+
+
+    <!--Layout principal-->
+    <div id="ContenedorMenu" class="container-fluid mt-5">
+        <div class="row">
+            <!--De 3 col-->
+            <div class="col-sm-12 col-lg-3">
+                <!--Menu-->
+                <div class="card">
+                    <div class="card-header bg-dark">
+                        <h4>
+                            <a class="text-white dropdown-toggle" href="#menu" data-parent="#ContenedorMenu" data-toggle="collapse">
+                                <i class="fas fa-align-justify"></i> Menu Principal
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="menu" class="collapse card-body show">
+                        <ul class="list-group">
+                            <li name="menu" class="list-group-item list-group-item-secondary d-flex justify-content-between align-items-center hover" title="10">
+                                <a href="productos.html" class="text-dark">Productos</a>
+                                <span class="badge badge-primary badge-pill">10</span>
+                            </li>
+                            <li name="menu" class="list-group-item list-group-item-secondary d-flex justify-content-between align-items-center hover" title="500">
+                                <a href="inventario.html" class="text-dark">Invetario</a>
+                                <span class="badge badge-primary badge-pill">500</span>
+                            </li>
+                            <li name="menu" class="list-group-item list-group-item-secondary d-flex justify-content-between align-items-center hover" title="50">
+                                <a href="pedidos.html" class="text-dark">Pedidos</a>
+                                <span class="badge badge-primary badge-pill">50</span>
+                            </li>
+                            <li name="menu" class="list-group-item list-group-item-secondary d-flex justify-content-between align-items-center hover" title="80">
+                                <a href="cupones.html" class="text-dark">Reportes</a>
+                                <span class="badge badge-primary badge-pill">80</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!--Administracion-->
+                <div class="card mt-3">
+                    <div class="card-header bg-dark text-white">
+                        <h4>
+                            <a href="#Admin" class="text-white dropdown-toggle" data-parent="#ContenedorMenu" data-toggle="collapse">
+                                <i class="fas fa-align-justify"></i> Administracion
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="Admin" class="card-body collapse show">
+                        <ul class="list-group">
+                            <li class="list-group-item list-group-item-secondary d-flex justify-content-between align-items-center hover">
+                                <a href="#" class="text-dark">Productos</a>
+                            </li>
+                            <li class="list-group-item list-group-item-secondary d-flex justify-content-between align-items-center hover">
+                                <a href="#" class="text-dark">Inventarios</a>
+                            </li>
+                            <li class="list-group-item list-group-item-secondary d-flex justify-content-between align-items-center hover">
+                                <a href="#" class="text-dark">Trabajadores</a>
+                            </li>
+                            <li class="list-group-item list-group-item-secondary d-flex justify-content-between align-items-center hover">
+                                <a href="#" class="text-dark">Etiquetas</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+            <!--De 6 col-->
+            <div class="col-sm-12 col-lg-9 mt-sm-5 mt-md-0" id="panelControl">
+
+                <!--Panel de control-->
+                <div class="card">
+                    <div class="card-header bg-dark text-center text-white">
+                        <h4>
+                            <a href="#opcionesControl" class="text-white dropdown-toggle" data-parent="#ContenedorMenu" data-toggle="collapse">
+                                <i class="fas fa-shopping-cart"></i> Panel de control
+                            </a>
+                    </div>
+                    <div class="card-body collapse show" id="opcionesControl">
+                        <!--Usar Flexbox-->
+                        <div class="d-flex justify-content-around row">
+                            <div class="col-sm-12 col-md-3 card py-3 bg-danger text-center text-white">
+                                <i class="fas fa-shopping-cart" style="font-size: 4rem;"></i>
+                                <h4>Pedidos</h4>
+                            </div>
+                            <div class="col-sm-12 col-md-3 card py-3 bg-warning text-center text-white mt-sm-3 mt-md-0">
+                                <i class="fas fa-file-invoice" style="font-size: 4rem;"></i>
+                                <h4>Reportes</h4>
+                            </div>
+                            <div class="col-sm-12 col-md-3 card py-3 bg-success text-center text-white mt-sm-3 mt-md-0">
+                                <i class="fas fa-table" style="font-size: 4rem;"></i>
+                                <h4>Productos</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--Tabla-->
+                <div class="card mt-5">
+                    <div class="card-header bg-dark text-white text-center">
+                        <h4>
+                            <a href="#Tabla" class="text-white dropdown-toggle" data-parent="#ContenedorMenu" data-toggle="collapse">
+                                <i class="fas fa-table"></i> Ultimos Pedidos
+                            </a>
+                        </h4>
+                    </div>
+                    <div class="card-body collapse show" id="Tabla">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Producto</th>
+                                    <th>Talla</th>
+                                    <th>Precio</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>Camisa 1</td>
+                                    <td>X</td>
+                                    <td>40,000</td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>Camisa 2</td>
+                                    <td>XL</td>
+                                    <td>140,000</td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>Camisa 3</td>
+                                    <td>m</td>
+                                    <td>20,000</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <!--Paginacion-->
+                        <div class="mt-3 mb-0">
+                            <nav aria-label="Page-Nav">
+                                <ul class="pagination justify-content-center">
+                                    <li class="page-item disabled">
+                                        <a href="#" class="page-link" aria-label="Previous">
+                                            <span aria-hidden="true">&laquo;</span>
+                                        </a>
+                                    </li>
+                                    <li class="page-item active">
+                                        <a href="#" class="page-link" aria-label="Previous">1</a>
+                                    </li>
+                                    <li class="page-item">
+                                        <a href="#" class="page-link" aria-label="Previous">2</a>
+                                    </li>
+                                    <li class="page-item">
+                                        <a href="#" class="page-link" aria-label="Previous">3</a>
+                                    </li>
+                                    <li class="page-item">
+                                        <a href="#" class="page-link" aria-label="Next">
+                                            <span aria-hidden="true">&raquo;</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -30,6 +207,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <!--Js personal-->
+    <script src="../js//Vendedor.js"></script>
 </body>
 
 </html>

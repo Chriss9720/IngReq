@@ -16,7 +16,7 @@ const cargar = (pagina, res) => {
     });
 }
 
-const verificarToken = (req, res, next) => {
+let verificarToken = (req, res, next) => {
     let token = req.get('Authorization');
     if (!token) {
         let cook = req.cookies;
@@ -27,10 +27,15 @@ const verificarToken = (req, res, next) => {
         }
     }
     jwt.verify(token, config.get("ConfigTk.SEED"), (err, datos) => {
-        if (err) {
-            return cargar('Denegado', res);
+        if (!err) {
+            if (datos.vendedor) {
+                return cargar('Vendedor', res);
+            } else if (datos.comprador) {
+                return cargar('Comprador', res);
+            } else {
+                next();
+            }
         } else {
-            req.data = datos;
             next();
         }
     });

@@ -1,6 +1,7 @@
 const express = require('express');
 const fs = require('fs');
 const auth = require('../middlewares/auth');
+const index = require('../middlewares/index');
 const ruta = express.Router();
 
 const cargar = (pagina, res) => {
@@ -17,7 +18,7 @@ const cargar = (pagina, res) => {
     });
 }
 
-ruta.get('/', (req, res) => cargar('index', res));
+ruta.get('/', index, (req, res) => cargar('index', res));
 
 ruta.get('/RegistroVendedor', (req, res) => cargar('RegistroVendedor', res));
 
@@ -25,18 +26,12 @@ ruta.get('/RegistroComprador', (req, res) => cargar('RegistroComprador', res));
 
 ruta.get('/Comprador', auth, (req, res) => {
     let data = req.data;
-    if (data.comprador)
-        cargar('Comprador', res);
-    else
-        res.status(401).json({ "msj": "Aceeso denegado" });
+    return (data.comprador) ? cargar('Comprador', res) : cargar('Denegado', res);
 });
 
 ruta.get('/Vendedor', auth, (req, res) => {
     let data = req.data;
-    if (data.vendedor)
-        cargar('Vendedor', res);
-    else
-        res.status(401).json({ "msj": "Aceeso denegado" });
+    return (data.vendedor) ? cargar('Vendedor', res) : cargar('Denegado', res);
 });
 
 module.exports = ruta;
