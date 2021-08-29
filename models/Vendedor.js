@@ -1,13 +1,6 @@
 const Mongoose = require("mongoose");
 const Schema = Mongoose.Schema;
 
-const Trabajadores = new Schema({
-    "Clave": { type: String },
-    "Entrada": [{ type: Date }],
-    "Telefono": { type: String },
-    "Direccion": { type: String }
-});
-
 const Vendido = new Schema({
     "Producto": { type: Schema.Types.ObjectId, ref: "Producto" },
     "Comprador": { type: Schema.Types.ObjectId, ref: "Comprador" }
@@ -22,7 +15,7 @@ const Vendedor = new Schema({
     "Direccion": { type: String, required: true },
     "Productos": [{ type: Schema.Types.ObjectId, ref: "Producto" }],
     "Vendidos": [Vendido],
-    "Trabajadores": [Trabajadores],
+    "Trabajadores": [{ type: Schema.Types.ObjectId, ref: "Trabajadores" }],
     "Etiquetas": [{ type: Schema.Types.ObjectId, ref: "Etiqueta" }]
 });
 
