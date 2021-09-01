@@ -14,7 +14,7 @@ const cargar = (pagina, res) => {
             res.end();
         }
     });
-}
+};
 
 const verificarToken = (req, res, next) => {
     let token = req.get('Authorization');
@@ -34,6 +34,6 @@ const verificarToken = (req, res, next) => {
             next();
         }
     });
-}
+};
 
 module.exports = verificarToken;

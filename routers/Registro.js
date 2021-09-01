@@ -17,7 +17,7 @@ const joiVendedor = Joi.object({
                 case "string.pattern.base":
                 case "string.pattern.invert.name":
                 case "string.pattern.invert.base":
-                    e.message = "Solo se permiten letras mayusculas y minusculas";
+                    e.message = "Solo se permiten letras mayusculas y minusculas y espacios";
                     break;
             }
         });

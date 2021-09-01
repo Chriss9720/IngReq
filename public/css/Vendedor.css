@@ -1,3 +1,7 @@
 .hover:hover {
     background: #ffc107 !important;
 }
+
+.mousePointer {
+    cursor: pointer;
+}
