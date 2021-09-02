@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!--font awesome-->
+    <script src="https://kit.fontawesome.com/38863894bb.js" crossorigin="anonymous"></script>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!--Font-->
+    <script src="https://kit.fontawesome.com/0b3284a19f.js" crossorigin="anonymous"></script>
+    <!--Css-->
+    <link rel="stylesheet" href="../css/Vendedor.css">
+    <title>Panel de Reportes</title>
+</head>
+
+<body class="bg-light">
+
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark p-0">
+        <div class="container">
+            <a href="/" class="navbar-brand">Mi Pagina</a>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item dropdown mr-3">
+                    <a href="" class="nav-link dropdown-toggle" data-toggle="dropdown">Bienvenido Jose <i class="fas fa-user"></i></a>
+                    <div class="dropdown-menu">
+                        <a href="perfil.html" class="dropdown-item hover"><i class="fas fa-user-circle"></i> perfil</a>
+                        <a href="#" class="dropdown-item hover"><i class="fas fa-cog"></i> Configuraciones</a>
+                        <a id="salir" href="/#" class="dropdown-item hover"><i class="fas fa-user-times"></i> Salir</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!--Migajas-->
+    <div class="container">
+        <div class="row">
+            <div class="card-body">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a href="/">Inicio</a>
+                        </li>
+                        <li class="breadcrumb-item active">
+                            Reportes
+                        </li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+    <!--Layout principal-->
+    <div id="ContenedorMenu" class="container-fluid">
+        <div class="row">
+            <!--De 3 col-->
+            <div class="col-sm-12 col-lg-3">
+                <!--Menu-->
+                <div class="card">
+                    <div class="card-header bg-dark">
+                        <h4>
+                            <a class="text-white dropdown-toggle" href="#menu" data-parent="#ContenedorMenu" data-toggle="collapse">
+                                <i class="fas fa-align-justify"></i> Menu Principal
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="menu" class="collapse card-body show">
+                        <ul class="list-group">
+                            <li name="menu" class="list-group-item list-group-item-secondary d-flex justify-content-between align-items-center hover" title="10">
+                                <a href="productos.html" class="text-dark">Productos</a>
+                                <span class="badge badge-primary badge-pill">10</span>
+                            </li>
+                            <li name="menu" class="list-group-item list-group-item-secondary d-flex justify-content-between align-items-center hover" title="500">
+                                <a href="inventario.html" class="text-dark">Invetario</a>
+                                <span class="badge badge-primary badge-pill">500</span>
+                            </li>
+                            <li name="menu" class="list-group-item list-group-item-secondary d-flex justify-content-between align-items-center hover" title="50">
+                                <a href="pedidos.html" class="text-dark">Pedidos</a>
+                                <span class="badge badge-primary badge-pill">50</span>
+                            </li>
+                            <li name="menu" class="list-group-item list-group-item-secondary d-flex justify-content-between align-items-center bg-success" title="80">
+                                <a href="cupones.html" class="text-dark">Reportes</a>
+                                <span class="badge badge-primary badge-pill">80</span>
+                            </li>
+                            <li name="menu" class="list-group-item list-group-item-secondary d-flex justify-content-between align-items-center hover" title="80">
+                                <a href="cupones.html" class="text-dark">En compra</a>
+                                <span class="badge badge-primary badge-pill">10</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!--Administracion-->
+                <div class="card mt-3">
+                    <div class="card-header bg-dark text-white">
+                        <h4>
+                            <a href="#Admin" class="text-white dropdown-toggle" data-parent="#ContenedorMenu" data-toggle="collapse">
+                                <i class="fas fa-align-justify"></i> Administracion
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="Admin" class="card-body collapse show">
+                        <ul class="list-group">
+                            <li class="list-group-item list-group-item-secondary d-flex justify-content-between align-items-center hover">
+                                <a href="#" class="text-dark">Productos</a>
+                            </li>
+                            <li class="list-group-item list-group-item-secondary d-flex justify-content-between align-items-center hover">
+                                <a href="#" class="text-dark">Inventarios</a>
+                            </li>
+                            <li class="list-group-item list-group-item-secondary d-flex justify-content-between align-items-center hover">
+                                <a href="#" class="text-dark">Trabajadores</a>
+                            </li>
+                            <li class="list-group-item list-group-item-secondary d-flex justify-content-between align-items-center hover">
+                                <a href="#" class="text-dark">Etiquetas</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+            <!--De 6 col-->
+            <div class="col-sm-12 col-lg-9 mt-sm-5 mt-md-0" id="graficos">
+                <div class="container mt-sm-3 mt-md-3 mt-xl-0 mt-lg-0 text-center">
+                    <button id="ReporteCompleto" type="button" class="btn btn-danger">Imprimir todo</button>
+                </div>
+                <div class="card mt-3">
+                    <div class="card-header bg-dark text-white text-center">
+                        <h4>
+                            <a href="#Ganancias" class="text-white dropdown-toggle" data-parent="#ContenedorMenu" data-toggle="collapse">
+                                <i class="fas fa-align-justify"></i> Ganancias en un periodo
+                            </a>
+                        </h4>
+                    </div>
+                    <div class="card-body collapse show" id="Ganancias">
+                        <div class="d-flex">
+                            <div class="form-inline text-center form-group mx-auto">
+                                <label for="periodo" class="font-weight-bold mr-3">Preciodo selccionado</label>
+                                <input type="date" id="fecha_1" class="form-control">
+                                <label for="periodo" class="font-weight-bold mr-3 ml-3">A</label>
+                                <input type="date" id="fecha_2" class="form-control">
+                                <button type="button" class="btn btn-success form-control ml-3">Aplicar</button>
+                                <button id="GananciasPDF" type="button" class="btn btn-primary form-control ml-3">Imprimir</button>
+                            </div>
+                        </div>
+                        <br/>
+                        <div id="chart_div" class="container-fluid"></div>
+                        <br/>
+                        <div class="container text-center form-group">
+                            <div id="btn-group">
+                                <button class="btn btn-secondary" id="none">No Format</button>
+                                <button class="btn btn-primary" id="scientific">Scientific Notation</button>
+                                <button class="btn btn-dark" id="decimal">Decimal</button>
+                                <button class="btn btn-info" id="short">Short</button>
+                                <button type="button" class="btn btn-success" id="diseño_1">Cambiar diseño</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card mt-3">
+                    <div class="card-header bg-dark text-white text-center">
+                        <h4>
+                            <a href="#MasVentas" class="text-white dropdown-toggle" data-parent="#ContenedorMenu" data-toggle="collapse">
+                                <i class="fas fa-align-justify"></i> Mas vendidos en un periodo
+                            </a>
+                        </h4>
+                    </div>
+                    <div class="card-body collapse show" id="MasVentas">
+                        <div class="d-flex">
+                            <div class="form-inline text-center form-group mx-auto">
+                                <label for="periodo" class="font-weight-bold mr-3">Preciodo selccionado</label>
+                                <input type="date" id="fecha_1" class="form-control">
+                                <label for="periodo" class="font-weight-bold mr-3 ml-3">A</label>
+                                <input type="date" id="fecha_2" class="form-control">
+                                <button type="button" class="btn btn-success form-control ml-3">Aplicar</button>
+                                <button id="MasVendidosPDF" type="button" class="btn btn-primary form-control ml-3">Imprimir</button>
+                            </div>
+                        </div>
+                        <br/>
+                        <div id="chart_div_MasVentas" class="container-fluid"></div>
+                        <br/>
+                        <div id="btn-group_MasVentas" class="container text-center form-group">
+                            <button class="btn btn-secondary" id="none">No Format</button>
+                            <button class="btn btn-primary" id="scientific">Scientific Notation</button>
+                            <button class="btn btn-dark" id="decimal">Decimal</button>
+                            <button class="btn btn-info" id="short">Short</button>
+                            <button type="button" class="btn btn-success" id="diseño_2">Cambiar diseño</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="card mt-3">
+                    <div class="card-header bg-dark text-white text-center">
+                        <h4>
+                            <a href="#MenosVentas" class="text-white dropdown-toggle" data-parent="#ContenedorMenu" data-toggle="collapse">
+                                <i class="fas fa-align-justify"></i> Menos ventas en un periodo
+                            </a>
+                        </h4>
+                    </div>
+                    <div class="card-body collapse show" id="MenosVentas">
+                        <div class="d-flex">
+                            <div class="form-inline text-center form-group mx-auto">
+                                <label for="periodo" class="font-weight-bold mr-3">Preciodo selccionado</label>
+                                <input type="date" id="fecha_1" class="form-control">
+                                <label for="periodo" class="font-weight-bold mr-3 ml-3">A</label>
+                                <input type="date" id="fecha_2" class="form-control">
+                                <button type="button" class="btn btn-success form-control ml-3">Aplicar</button>
+                                <button id="MenosVendidosPDF" type="button" class="btn btn-primary form-control ml-3">Imprimir</button>
+                            </div>
+                        </div>
+                        <br/>
+                        <div id="chart_div_MenosVentas" class="container-fluid"></div>
+                        <br/>
+                        <div id="btn-group_MenosVentas" class="container text-center form-group">
+                            <button class="btn btn-secondary" id="none">No Format</button>
+                            <button class="btn btn-primary" id="scientific">Scientific Notation</button>
+                            <button class="btn btn-dark" id="decimal">Decimal</button>
+                            <button class="btn btn-info" id="short">Short</button>
+                            <button type="button" class="btn btn-success" id="diseño_3">Cambiar diseño</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <!--Graficos-->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <!--Js personal-->
+    <script src="../js/Reportes.js"></script>
+</body>
+
+</html>
