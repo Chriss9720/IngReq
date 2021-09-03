@@ -15,7 +15,6 @@ const Vendedor = new Schema({
     "Direccion": { type: String, required: true },
     "Productos": [{ type: Schema.Types.ObjectId, ref: "Producto" }],
     "Vendidos": [Vendido],
-    "Trabajadores": [{ type: Schema.Types.ObjectId, ref: "Trabajadores" }],
     "Etiquetas": [{ type: Schema.Types.ObjectId, ref: "Etiqueta" }]
 });
 
