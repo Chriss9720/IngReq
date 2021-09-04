@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <!--font awesome-->
+    <script src="https://kit.fontawesome.com/38863894bb.js" crossorigin="anonymous"></script>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+    <!--Font-->
+    <script src="https://kit.fontawesome.com/0b3284a19f.js" crossorigin="anonymous"></script>
+    <!--Css-->
+    <link rel="stylesheet" href="../css/Productos.css" />
+    <title>Panel del vendedor</title>
+</head>
+
+<body class="bg-light">
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark p-0">
+        <div class="container">
+            <a href="/" class="navbar-brand">Mi Pagina</a>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item dropdown mr-3">
+                    <a href="" class="nav-link dropdown-toggle" data-toggle="dropdown">Bienvenido Jose <i
+                            class="fas fa-user"></i></a>
+                    <div class="dropdown-menu">
+                        <a href="perfil.html" class="dropdown-item hover"><i class="fas fa-user-circle"></i> perfil</a>
+                        <a href="#" class="dropdown-item hover"><i class="fas fa-cog"></i> Configuraciones</a>
+                        <a id="salir" href="/#" class="dropdown-item hover"><i class="fas fa-user-times"></i> Salir</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!--Migajas-->
+    <div class="container">
+        <div class="row">
+            <div class="card-body">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a href="/">Inicio</a>
+                        </li>
+                        <li class="breadcrumb-item active">Productos</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+    <!--Layout principal-->
+    <div id="ContenedorMenu" class="container-fluid">
+        <div class="row">
+            <!--De 3 col-->
+            <div class="col-sm-12 col-lg-3">
+                <!--Menu-->
+                <div class="card">
+                    <div class="card-header bg-dark">
+                        <h4>
+                            <a class="text-white dropdown-toggle" href="#menu" data-parent="#ContenedorMenu" data-toggle="collapse">
+                                <i class="fas fa-align-justify"></i> Menu Principal
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="menu" class="collapse card-body show">
+                        <ul class="list-group">
+                            <li name="menu" class="list-group-item list-group-item-secondary d-flex justify-content-between align-items-center bg-success" title="10">
+                                <label class="text-dark">Productos</label>
+                                <span class="badge badge-primary badge-pill">10</span>
+                            </li>
+                            <li name="menu" class="list-group-item list-group-item-secondary d-flex justify-content-between align-items-center hover" title="500">
+                                <a href="inventario.html" class="text-dark">Invetario</a>
+                                <span class="badge badge-primary badge-pill">500</span>
+                            </li>
+                            <li name="menu" class="list-group-item list-group-item-secondary d-flex justify-content-between align-items-center hover" title="50">
+                                <a href="pedidos.html" class="text-dark">Pedidos</a>
+                                <span class="badge badge-primary badge-pill">50</span>
+                            </li>
+                            <li name="menu" class="list-group-item list-group-item-secondary d-flex justify-content-between align-items-center hover" title="80">
+                                <a href="cupones.html" class="text-dark">Reportes</a>
+                                <span class="badge badge-primary badge-pill">80</span>
+                            </li>
+                            <li name="menu" class="list-group-item list-group-item-secondary d-flex justify-content-between align-items-center hover" title="80">
+                                <a href="cupones.html" class="text-dark">En compra</a>
+                                <span class="badge badge-primary badge-pill">10</span>
+                            </li>
+                            <li class="list-group-item list-group-item-secondary d-flex justify-content-between align-items-center hover">
+                                <a href="#" class="text-dark">Etiquetas</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!--De 6 col-->
+            <div class="col-sm-12 col-lg-9 mt-sm-3 mt-md-3" id="panelControl">
+                <!--btn add-->
+                <div class="col-12 text-center">
+                    <button class="btn btn-primary" id="agregar">
+                            <i class="fas fa-plus"></i> Agregar Producto
+                    </button>
+                </div>
+                <div class="col-12 d-flex d-inline text-center justify-content-center mt-2">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">
+                            <i class="fas fa-search"></i>
+                        </span>
+                    </div>
+                    <input type="text" class="form-control w-75 border text-center" placeholder="Nombre del producto">
+                    <button type="button" class="btn btn-success">Buscar</button>
+                </div>
+                <!--Tabla responsiba mia-->
+                <div class="card mt-3">
+                    <!--Titulo-->
+                    <div class="card-header bg-dark text-white text-center">
+                        <h4>
+                            <a href="#MiTabla" class="text-white dropdown-toggle" data-parent="#ContenedorMenu" data-toggle="collapse">
+                                <i class="fas fa-table"></i> Ultimos productos agregados
+                            </a>
+                        </h4>
+                    </div>
+                    <!--Ocultable-->
+                    <div id="MiTabla" class="collapse show">
+                        <!--Cuerpo-->
+                        <div class="card-body" id="DatosDeTabla">
+                            <!--Encabezado-->
+                            <div class="row ml-1 mr-1 text-center">
+                                <div class="col-sm-1 col-md-1 bg-dark text-white">
+                                    <label for="#" class="mt-2 mb-2">#</label>
+                                </div>
+                                <div class="col-sm-3 col-md-2 bg-secondary text-white">
+                                    <label for="Categoria" class="mt-2 mb-2">Categoria</label>
+                                </div>
+                                <div class="col-sm-2 col-md-2 bg-dark text-white">
+                                    <label for="Slug" class="mt-2 mb-2">Slug</label>
+                                </div>
+                                <div class="col-sm-2 col-md-4 bg-secondary text-white">
+                                    <label for="Descripcion" class="mt-2 mb-2">Descripcion</label>
+                                </div>
+                                <div class="col-sm-4 col-md-3 bg-dark text-white">
+                                    <label for="Acciones" class="mt-2 mb-2">Acciones</label>
+                                </div>
+                            </div>
+
+                            <nav class="navbar navbar-expand-sm ml-1 mr-1 nav">
+                                <button class="navbar-toggler border-danger bg-dark mx-auto mb-2 mt-2 " type="button" data-toggle="collapse" data-target="#datoEjemplo" aria-controls="datoEjemplo" aria-expanded="datoEjemplo" aria-label="Toggle navigation">
+                                    <label for="#" class="text-white">CLICK ME <i class="fas fa-caret-down"></i></label>
+                                </button>
+
+                                <!-- Dato 1 -->
+                                <div class="row data text-center collapse navbar-collapse bg-white" id="datoEjemplo">
+                                    <div class="col-sm-1 col-md-1 text-white bg-dark dato1">
+                                        <label for="#" class="mt-2 mb-2">Este</label>
+                                    </div>
+                                    <div class="col-sm-3 col-md-2 dato">
+                                        <label for="Categoria" class="mt-2 mb-2">Esta</label>
+                                    </div>
+                                    <div class="col-sm-2 col-md-2 text-white bg-dark dato1">
+                                        <label for="Slug" class="mt-2 mb-2">puesto</label>
+                                    </div>
+                                    <div class="col-sm-2 col-md-4 dato">
+                                        <label for="Descripcion" class="mt-2 mb-2">desde HTML</label>
+                                    </div>
+                                    <div class="col-sm-4 col-md-3 text-white bg-dark dato1">
+                                        <label class="mt-2 mb-2">
+                                            <div class="btn-group" role="group">
+                                                <button type="button" class="btn btn-primary text-white mr-2" id="modificar_1">
+                                                    <i class="fas fa-edit"></i>
+                                                </button>
+                                            </div>
+                                        </label>
+                                    </div>
+                                </div>
+                            </nav>
+                        </div>
+                        <!--Pie de pagina-->
+                        <div class="card-footer">
+                            <div class="mt-3 mb-0">
+                                <nav aria-label="Page-Nav">
+                                    <ul class="pagination justify-content-center">
+                                        <li class="page-item disabled">
+                                            <a href="#" class="page-link" aria-label="Previous">
+                                                <span aria-hidden="true">&laquo;</span>
+                                            </a>
+                                        </li>
+                                        <li class="page-item active">
+                                            <a href="#" class="page-link" aria-label="Previous">1</a>
+                                        </li>
+                                        <li class="page-item">
+                                            <a href="#" class="page-link" aria-label="Previous">2</a>
+                                        </li>
+                                        <li class="page-item">
+                                            <a href="#" class="page-link" aria-label="Previous">3</a>
+                                        </li>
+                                        <li class="page-item">
+                                            <a href="#" class="page-link" aria-label="Next">
+                                                <span aria-hidden="true">&raquo;</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Modal agregar productos-->
+    <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="EjemploModal" aria-hidden="true">
+        <div class="modal-dialog modal-xl" role="document">
+            <div class="modal-content">
+                <div class="modal-header breadcrumb">
+                    <div class="mx-auto">
+                        <h5 class="modal-title" id="Titulo-modal">Nuevo Producto</h5>
+                    </div>
+                    <button class="close" data-dismiss="modal" aria-label="close">
+                        <span aria-hidden="true"><i class="fas fa-times-circle"></i></span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12 col-lg-8 col-xl-8">
+                            <form>
+                                <div class="form-group">
+                                    <label for="Categoria">Categoria:</label>
+                                    <input type="text" class="form-control" placeholder="Nombre de la categoria" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="Slug">Slug:</label>
+                                    <input type="text" class="form-control" placeholder="Nombre de la Slug" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="Descripcion">Descripcion:</label>
+                                    <textarea name="Editor1" class="form-control"></textarea>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4">
+                            <img src="../img/none.jpg" alt="imagen no encontrada" class="img-fluid img-thumbnail" id="foto_pro">
+                            <div class="custom-file mt-2">
+                                <input type="file" class="custom-file-input" id="foto" onchange="CargarFoto()">
+                                <label class="custom-file-label" for="validatedCustomFile" id="nombreFoto">Seleccione la foto</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal" aria-label="close">
+                        Cerrar
+                    </button>
+                    <button class="btn btn-primary" type="button" aria-label="close">
+                        <i class="fas fa-save"></i> Guardar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <!--CKEditor-->
+    <script src="//cdn.ckeditor.com/4.16.2/basic/ckeditor.js"></script>
+    <!--Js personal-->
+    <script type="text/javascript">
+        CKEDITOR.replace("Editor1");
+    </script>
+    <script src="../js/Productos.js"></script>
+</body>
+
+</html>

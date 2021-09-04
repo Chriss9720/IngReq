@@ -17,12 +17,14 @@ const Ganancias = () => {
 
     datos.forEach(item => data.addRows([item]));
 
+    let h = (horientazion1) ? "vertical" : "horizontal";
+
     var options = {
         chart: {
             title: 'Ventas de la compañia',
             subtitle: 'Seleccione una barra para ver detalles',
         },
-        bars: (horientazion1) ? "vertical" : "horizontal",
+        bars: h,
         vAxis: { format: 'decimal' },
         height: 400,
         colors: ['#1b9e77', '#d95f02']
@@ -46,7 +48,7 @@ const Ganancias = () => {
 
     btns.onclick = function(e) {
         if (e.target.tagName === 'BUTTON') {
-            if (e.target.id != "diseño") {
+            if (e.target.id != "diseño_1") {
                 options.vAxis.format = e.target.id === 'none' ? '' : e.target.id;
                 chart.draw(data, google.charts.Bar.convertOptions(options));
             }
@@ -96,7 +98,7 @@ const MasVentas = () => {
 
     btns.onclick = function(e) {
         if (e.target.tagName === 'BUTTON') {
-            if (e.target.id != "diseño") {
+            if (e.target.id != "diseño_2") {
                 options.vAxis.format = e.target.id === 'none' ? '' : e.target.id;
                 chart.draw(data, google.charts.Bar.convertOptions(options));
             }
@@ -146,7 +148,7 @@ const MenosVentas = () => {
 
     btns.onclick = function(e) {
         if (e.target.tagName === 'BUTTON') {
-            if (e.target.id != "diseño") {
+            if (e.target.id != "diseño_3") {
                 options.vAxis.format = e.target.id === 'none' ? '' : e.target.id;
                 chart.draw(data, google.charts.Bar.convertOptions(options));
             }
