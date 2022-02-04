@@ -43,7 +43,7 @@
                         <li class="breadcrumb-item">
                             <a href="/">Inicio</a>
                         </li>
-                        <li class="breadcrumb-item active">Productos</li>
+                        <li class="breadcrumb-item active">Proveedores</li>
                     </ol>
                 </nav>
             </div>
@@ -101,7 +101,7 @@
                 <!--btn add-->
                 <div class="col-12 text-center">
                     <button class="btn btn-primary" id="adquirir">
-                            <i class="fas fa-plus"></i> Adquirir Producto
+                            <i class="fas fa-plus"></i> Registrar proveedor
                     </button>
                 </div>
                 <div class="col-12 d-flex d-inline text-center justify-content-center mt-2">
@@ -110,7 +110,7 @@
                             <i class="fas fa-search"></i>
                         </span>
                     </div>
-                    <input type="text" class="form-control w-75 border text-center" placeholder="Nombre del producto">
+                    <input type="text" class="form-control w-75 border text-center" placeholder="Nombre del proveedor">
                     <button type="button" class="btn btn-success">Buscar</button>
                 </div>
                 <!--Tabla responsiba mia-->
@@ -119,7 +119,7 @@
                     <div class="card-header bg-dark text-white text-center">
                         <h4>
                             <a href="#MiTabla" class="text-white dropdown-toggle" data-parent="#ContenedorMenu" data-toggle="collapse">
-                                <i class="fas fa-table"></i> Ultimos productos agregados
+                                <i class="fas fa-table"></i> Proveedores comprados recientemente
                             </a>
                         </h4>
                     </div>
@@ -136,15 +136,15 @@
                                     <label class="mt-2 mb-2">Nombre</label>
                                 </div>
                                 <div class="col-sm-2 col-md-2 bg-dark text-white">
-                                    <label class="mt-2 mb-2">Cantidad</label>
+                                    <label class="mt-2 mb-2">Telefono</label>
                                 </div>
-                                <div class="col-sm-2 col-md-1 bg-secondary text-white">
-                                    <label class="mt-2 mb-2">Costo</label>
+                                <div class="col-sm-2 col-md-2 bg-secondary text-white">
+                                    <label class="mt-2 mb-2">dias Credito</label>
                                 </div>
                                 <div class="col-sm-2 col-md-2 bg-dark text-white">
-                                    <label class="mt-2 mb-2">Punto de orden</label>
+                                    <label class="mt-2 mb-2">correo</label>
                                 </div>
-                                <div class="col-sm-4 col-md-4 bg-secondary text-white">
+                                <div class="col-sm-4 col-md-3 bg-secondary text-white">
                                     <label class="mt-2 mb-2">Acciones</label>
                                 </div>
                             </div>
@@ -159,18 +159,18 @@
                                         <label for="#" class="mt-2 mb-2">1</label>
                                     </div>
                                     <div class="col-sm-3 col-md-2 dato">
-                                        <label class="mt-2 mb-2">Television</label>
+                                        <label class="mt-2 mb-2">Vanessa</label>
                                     </div>
                                     <div class="col-sm-2 col-md-2 text-white bg-dark dato1">
                                         <label class="mt-2 mb-2">100</label>
                                     </div>
-                                    <div class="col-sm-2 col-md-1 dato">
-                                        <label class="mt-2 mb-2">100.50</label>
+                                    <div class="col-sm-2 col-md-2 dato">
+                                        <label class="mt-2 mb-2">25</label>
                                     </div>
                                     <div class="col-sm-2 col-md-2 text-white bg-dark dato1">
                                         <label class="mt-2 mb-2">50</label>
                                     </div>
-                                    <div class="col-sm-4 col-md-4 text-white dato1">
+                                    <div class="col-sm-4 col-md-3 text-white dato1">
 
                                         <label class="mt-2 mb-2">
                                             <div class="btn-group" role="group">
@@ -182,16 +182,8 @@
 
                                         <label class="mt-2 mb-2">
                                             <div class="btn-group" role="group">
-                                                <button type="button" class="btn btn-primary text-white mr-2" id="modificar_1" title="Editar">
+                                                <button type="button" class="btn btn-success text-white mr-2" id="modificar_1" title="Editar">
                                                     <i class="fas fa-edit"></i>
-                                                </button>
-                                            </div>
-                                        </label>
-
-                                        <label class="mt-2 mb-2">
-                                            <div class="btn-group" role="group">
-                                                <button type="button" class="btn btn-success text-white mr-2" id="modificar_1" title="Agregar proveedor">
-                                                    <i class="fas fa-user-plus"></i>
                                                 </button>
                                             </div>
                                         </label>
@@ -322,117 +314,57 @@
                     <button id="psv" class="btn btn-primary" type="button" aria-label="close">
                         <i class="fas fa-save"></i> Guardar
                     </button>
+
                 </div>
             </div>
         </div>
     </div>
 
-    <!--Modal adquirir producto-->
-    <div class="modal fade" id="modalAd" tabindex="-1" role="dialog">
+    <!--Modal adquirir proveedore-->
+    <div class="modal fade" id="proveedor" tabindex="-1" role="dialog">
         <div class="modal-dialog modal-xl" role="document">
             <div class="modal-content">
                 <div class="modal-header breadcrumb">
                     <div class="mx-auto">
-                        <h5 class="modal-title" id="Titulo-modal">Adquirir Producto</h5>
+                        <h5 class="modal-title" id="Titulo-modal">Registrar proveedor</h5>
                     </div>
                     <button class="close" data-dismiss="modal" aria-label="close">
                         <span aria-hidden="true"><i class="fas fa-times-circle"></i></span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <div class="card">
-                        <div class="card-body" id="DatosDeTabla">
-                            <!--Encabezado-->
-                            <div class="row ml-1 mr-1 text-center">
-                                <div class="col-sm-1 col-md-1 bg-dark text-white">
-                                    <label for="#" class="mt-2 mb-2">#</label>
-                                </div>
-                                <div class="col-sm-3 col-md-2 bg-secondary text-white">
-                                    <label class="mt-2 mb-2">Nombre</label>
-                                </div>
-                                <div class="col-sm-2 col-md-2 bg-dark text-white">
-                                    <label class="mt-2 mb-2">Cantidad</label>
-                                </div>
-                                <div class="col-sm-2 col-md-1 bg-secondary text-white">
-                                    <label class="mt-2 mb-2">Costo</label>
-                                </div>
-                                <div class="col-sm-2 col-md-2 bg-dark text-white">
-                                    <label class="mt-2 mb-2">Proveedor</label>
-                                </div>
-                                <div class="col-sm-4 col-md-4 bg-secondary text-white">
-                                    <label class="mt-2 mb-2">Acciones</label>
-                                </div>
-                            </div>
-
-                            <nav class="navbar navbar-expand-sm ml-1 mr-1 nav">
-                                <button class="navbar-toggler border-danger bg-dark mx-auto mb-2 mt-2 " type="button" data-toggle="collapse" data-target="#datoEjemplo" aria-controls="datoEjemplo" aria-expanded="datoEjemplo" aria-label="Toggle navigation">
-                                    <label for="#" class="text-white">CLICK ME <i class="fas fa-caret-down"></i></label>
-                                </button>
-                                <!-- Dato 1 -->
-                                <div class="row data text-center collapse navbar-collapse bg-white" id="datoEjemplo">
-                                    <div class="col-sm-1 col-md-1 text-white bg-dark dato1">
-                                        <label for="#" class="mt-2 mb-2">1</label>
-                                    </div>
-                                    <div class="col-sm-3 col-md-2 dato">
-                                        <label class="mt-2 mb-2">Television</label>
-                                    </div>
-                                    <div class="col-sm-2 col-md-2 text-white bg-dark dato1">
-                                        <label class="mt-2 mb-2">100</label>
-                                    </div>
-                                    <div class="col-sm-2 col-md-1 dato">
-                                        <label class="mt-2 mb-2">100.50</label>
-                                    </div>
-                                    <div class="col-sm-2 col-md-2 text-white bg-dark dato1">
-                                        <label class="mt-2 mb-2">Nombre</label>
-                                    </div>
-                                    <div class="col-sm-4 col-md-4 text-white dato1">
-                                        <label class="mt-2 mb-2">
-                                            <div class="btn-group" role="group">
-                                                <button type="button" class="btn btn-primary text-white mr-2" id="modificar_1" title="Ver">
-                                                    <i class="fas fa-eye"></i>
-                                                </button>
-                                            </div>
-                                        </label>
-                                        <label class="mt-2 mb-2">
-                                            <div class="btn-group" role="group">
-                                                <button type="button" class="btn btn-success text-white mr-2" id="modificar_1" title="Ver">
-                                                    <i class="fas fa-shopping-cart"></i>
-                                                </button>
-                                            </div>
-                                        </label>
-                                    </div>
-                                </div>
-                            </nav>
-                        </div>
-                        <!--Pie de pagina-->
-                        <div class="card-footer">
-                            <div class="mt-3 mb-0">
-                                <nav aria-label="Page-Nav">
-                                    <ul class="pagination justify-content-center">
-                                        <li class="page-item disabled">
-                                            <a href="#" class="page-link" aria-label="Previous">
-                                                <span aria-hidden="true">&laquo;</span>
-                                            </a>
-                                        </li>
-                                        <li class="page-item active">
-                                            <a href="#" class="page-link" aria-label="Previous">1</a>
-                                        </li>
-                                        <li class="page-item">
-                                            <a href="#" class="page-link" aria-label="Previous">2</a>
-                                        </li>
-                                        <li class="page-item">
-                                            <a href="#" class="page-link" aria-label="Previous">3</a>
-                                        </li>
-                                        <li class="page-item">
-                                            <a href="#" class="page-link" aria-label="Next">
-                                                <span aria-hidden="true">&raquo;</span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </nav>
-                            </div>
-                        </div>
+                    <div class="form-group">
+                        <label for="">Nombre</label>
+                        <input type="text" class="form-control">
                     </div>
+                    <div class="form-group">
+                        <label for="">Direccion</label>
+                        <input type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="">Telefono</label>
+                        <input type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="">RFC</label>
+                        <input type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="">Correo</label>
+                        <input type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="">Codigo postal</label>
+                        <input type="text" class="form-control">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal" aria-label="close">
+                        Cerrar
+                    </button>
+                    <button id="psv" class="btn btn-primary" type="button" aria-label="close">
+                        <i class="fas fa-save"></i> Guardar
+                    </button>
                 </div>
             </div>
         </div>
@@ -449,6 +381,7 @@
     <script src="//cdn.ckeditor.com/4.16.2/basic/ckeditor.js"></script>
     <!--Js personal-->
     <script src="../js/Productos.js"></script>
+    <script src="../js/proveedores.js"></script>
 </body>
 
 </html>

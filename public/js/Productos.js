@@ -1,32 +1,40 @@
-$('#agregar').click(() => {
-    modal();
-    document.getElementById('Titulo-modal').innerText = "Agregar producto";
-});
+$(document).ready(() => {
 
-$('#modificar_1').click(() => {
-    modal();
-    document.getElementById('Titulo-modal').innerText = "Modificar producto";
-});
+    $('#adquirir').click(() => {
+        $('#modalAd').modal();
+    });
 
-const CargarFoto = () => {
-    let archivo = document.getElementById("foto").files[0];
-    let reader = new FileReader();
-    let img = document.getElementById("foto_pro");
-    let nombre = document.getElementById('nombreFoto');
-    if (archivo) {
-        nombre.innerText = archivo.name;
-        reader.readAsDataURL(archivo);
-        reader.onloadend = () => {
-            img.src = reader.result;
+    $('#agregar').click(() => {
+        modal();
+        $("#Titulo-modal")[0].innerText = "Agregar producto";
+    });
+
+    $('#modificar_1').click(() => {
+        modal();
+        $("#Titulo-modal")[0].innerText = "Modificar producto";
+    });
+
+    $("#foto").change(() => {
+        let archivo = $("#foto")[0].files[0];
+        let reader = new FileReader();
+        let img = $("#foto_pro")[0];
+        let nombre = $("#nombreFoto")[0];
+        if (archivo) {
+            nombre.innerText = archivo.name;
+            reader.readAsDataURL(archivo);
+            reader.onloadend = () => img.src = reader.result;
         }
-    }
-};
+    });
 
-$('#modal').on('hidden.bs.modal', () => {
-    let img = document.getElementById("foto_pro");
-    let nombre = document.getElementById('nombreFoto');
-    img.src = "../img/none.jpg";
-    nombre.innerText = "Seleccione la foto";
+    $('#modal').on('hidden.bs.modal', () => {
+        let img = $("#foto_pro")[0];
+        let nombre = $("#nombreFoto")[0];
+        img.src = "../img/none.jpg";
+        nombre.innerText = "Seleccione la foto";
+    });
+
+    const modal = () => $('#modal').modal();
+
+    CKEDITOR.replace("Editor1");
+
 });
-
-const modal = () => $('#modal').modal({ show: true });

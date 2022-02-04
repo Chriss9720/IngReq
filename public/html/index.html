@@ -28,13 +28,13 @@
 
         <div class="row" id="row">
 
-            <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 comprador" id="cComp">
+            <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 comprador" id="cComp">
                 <section id="LoginCompradores" class="mt-5 mb-5">
                     <div class="container-fluid">
-                        <div class="mx-auto col-sm-12 col-md-10 col-lg-10 col-xl-10" id="alertComprador">
+                        <div class="mx-auto col-sm-12 col-md-10 col-lg-6 col-xl-6" id="alertComprador">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4 class="text-center">Acceso de Compradores</h4>
+                                    <h4 class="text-center">Acceso</h4>
                                 </div>
                                 <div class="card-body">
                                     <form id="AccesoCompradores" action="/Comprador">
@@ -69,45 +69,8 @@
                 </section>
             </div>
 
-            <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 bg-secondary" id="cVend">
-                <section id="LoginVendedor" class="mt-5 mb-5">
-                    <div class="container-fluid">
-                        <div class="mx-auto col-sm-12 col-md-10 col-lg-10 col-xl-10" id="alertVendedor">
-                            <div class="card">
-                                <div class="card-header">
-                                    <h4 class="text-center">Acceso de Vendedores</h4>
-                                </div>
-                                <div class="card-body">
-                                    <form id="formVendedor" action="/Vendedor">
-                                        <div class="form-group">
-                                            <label for="email">Email</label>
-                                            <div class="input-group">
-                                                <input type="text" id="emailVendedor" class="form-control" placeholder="Ingrese su email">
-                                            </div>
-                                        </div>
-                                        <label for="password">Password</label>
-                                        <div class="form-group">
-                                            <div class="input-group">
-                                                <div id="titleVendedor" class="input-group-prepend" title="Ver clave" onclick="visible('claveVendedor', 'ojoVendedor')">
-                                                    <span class="input-group-text">
-                                                        <i id="ojoVendedor" class="fas fa-eye"></i>
-                                                    </span>
-                                                </div>
-                                                <input type="password" id="claveVendedor" class="form-control" placeholder="Ingrese su password">
-                                            </div>
-                                        </div>
-                                        <button type="submit" class="btn btn-primary w-100">
-                                                    <i class="fas fa-user"></i> Acceder
-                                                </button>
-                                        <a href="/RegistroVendedor" class="btn btn-secondary w-100 mt-3">
-                                            <i class="fas fa-user-plus"></i> Registrarse
-                                        </a>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
+            <div class="col-0 bg-secondary" id="cVend">
+
             </div>
 
             <div class="w-100">

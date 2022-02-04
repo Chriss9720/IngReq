@@ -200,7 +200,6 @@ $('#GananciasPDF').click(() => {
 });
 
 $('#MasVendidosPDF').click(() => {
-    console.log("KCAS");
     let info = document.getElementById('chart_div_MasVentas').innerHTML;
     let w = window.open();
     w.document.write("<h1>Mas vendidos en el priodo</h1>");
