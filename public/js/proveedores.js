@@ -1,6 +1,6 @@
 $(document).ready(() => {
 
-    $('#adquirir').click(() => {
+    $('[name="adquirir"]').click(() => {
         $('#proveedor').modal();
     });
 

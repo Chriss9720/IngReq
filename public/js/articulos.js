@@ -1,17 +1,7 @@
 $(document).ready(() => {
 
-    $('#adquirir').click(() => {
-        $('#modalAd').modal();
-    });
-
-    $('#agregar').click(() => {
-        modal();
-        $("#Titulo-modal")[0].innerText = "Agregar producto";
-    });
-
-    $('#modificar_1').click(() => {
-        modal();
-        $("#Titulo-modal")[0].innerText = "Modificar producto";
+    $('[name="modificar_1"]').click(() => {
+        $("#modal").modal();
     });
 
     $("#foto").change(() => {
@@ -33,8 +23,21 @@ $(document).ready(() => {
         nombre.innerText = "Seleccione la foto";
     });
 
-    const modal = () => $('#modal').modal();
-
     CKEDITOR.replace("Editor1");
+
+    $("#proveedores")[0].innerHTML = "";
+    let cont = '<div class="scrollmenu p-1">'
+    for (let i = 0; i < 10; i++) cont += `<input name="ps" type="button" class="btn btn-secondary ml-3" value="proveedor ${(i+1)}">`;
+    cont += "</div>"
+    $("#proveedores")[0].innerHTML = cont;
+
+    $('input[name="ps"]').click(e => {
+        if (e.target.className.includes('secondary'))
+            e.target.className = 'btn btn-success ml-3';
+        else
+            e.target.className = 'btn btn-secondary ml-3';
+    });
+
+
 
 });
