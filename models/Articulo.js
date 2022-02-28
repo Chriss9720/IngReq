@@ -7,7 +7,6 @@ const Articulo = new Schema({
     "Cantidad": { type: Number, default: 0 },
     "Costo": { type: String, required: true },
     "Costo_prom": { type: String, default: 0 },
-    "Descripcion": { type: String, default: "" },
     "Cantidad_pedir": { type: Number, default: 0 },
     "punto_reorden": { type: Number },
     "unidades_compra": { type: Number },
