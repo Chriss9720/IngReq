@@ -151,4 +151,12 @@ ruta.post('/registro', (req, res) => {
     res.json(errores);
 });
 
+ruta.post('/login', (req, res) => {
+    let errores = {};
+    let { clave, email } = req.body;
+    errores = validar(errores, "errEmail", validarEmail, { email });
+    errores = validar(errores, "errClave", validarClave, { clave });
+    res.json(errores);
+});
+
 module.exports = ruta;

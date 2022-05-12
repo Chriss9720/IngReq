@@ -37,26 +37,29 @@
                                     <h4 class="text-center">Acceso</h4>
                                 </div>
                                 <div class="card-body">
-                                    <form id="AccesoCompradores" action="/Comprador">
+                                    <form id="acceso" action="/inicio" method="post">
                                         <div class="form-group">
                                             <label for="email">Email</label>
                                             <div class="input-group">
                                                 <input type="text" id="email" class="form-control" placeholder="Ingrese su email">
+                                                <div id="errEmail" class="invalid-feedback"></div>
                                             </div>
                                         </div>
                                         <label for="password">Password</label>
                                         <div class="form-group">
                                             <div class="input-group">
-                                                <div id="title" class="input-group-prepend" title="Ver clave" onclick="visible('claveComprador', 'ojoComprador')">
-                                                    <span class="input-group-text">
+                                                <div id="title" class="input-group-prepend" title="Ver clave">
+                                                    <span class="input-group-text click">
                                                         <i id="ojoComprador" class="fas fa-eye"></i>
                                                     </span>
                                                 </div>
-                                                <input type="password" id="claveComprador" class="form-control" placeholder="Ingrese su password">
+                                                <input type="password" id="clave" class="form-control" placeholder="Ingrese su password">
+                                                <div id="errClave" class="invalid-feedback"></div>
                                             </div>
                                         </div>
+                                        <div id="alerta"></div>
                                         <button type="submit" class="btn btn-primary w-100">
-                                                    <i class="fas fa-user"></i> Acceder
+                                            <i class="fas fa-user"></i> Acceder
                                         </button>
                                         <a href="/Registro" class="btn btn-secondary w-100 mt-3">
                                             <i class="fas fa-user-plus"></i> Registrarse
@@ -96,8 +99,8 @@
                 <div class="modal-header bg-danger" id="color">
                     <h5 class="modal-title" id="EjemploModal">Error</h5>
                     <button class="close" data-dismiss="modal" aria-label="close">
-                    <span aria-hidden="true"><i class="fas fa-times-circle"></i></span>
-                </button>
+                        <span aria-hidden="true"><i class="fas fa-times-circle"></i></span>
+                    </button>
                 </div>
                 <div class="modal-body">
                     <div id="ErrorMensaje"></div>

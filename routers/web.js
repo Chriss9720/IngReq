@@ -22,14 +22,10 @@ ruta.get('/', index, (req, res) => cargar('index', res));
 
 ruta.get('/Registro', (req, res) => cargar('Registro', res));
 
-ruta.get('/Comprador', auth, (req, res) => {
-    let data = req.data;
-    return (data.comprador) ? cargar('Comprador', res) : cargar('Denegado', res);
-});
+ruta.post('/inicio', (req, res) => cargar('inicio', res));
 
-ruta.get('/Vendedor', auth, (req, res) => {
-    let data = req.data;
-    return (data.vendedor) ? cargar('Vendedor', res) : cargar('Denegado', res);
-});
+ruta.post('/Administrar', auth, (req, res) => cargar('vendedor/Vendedor', res));
+
+ruta.post('/cambio/:seccion', (req, res) => cargar(`vendedor/${req.params.seccion}`, res));
 
 module.exports = ruta;
