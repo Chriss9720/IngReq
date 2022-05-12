@@ -1,8 +1,11 @@
 $(document).ready(() => {
 
     let datos = [];
+    let idPro;
 
     $('[name="adquirir"]').click(() => {
+        $("#accionAct").attr('hidden', true);
+        $("#accionSalvar").attr('hidden', false);
         $('#proveedor').modal();
     });
 
@@ -22,6 +25,7 @@ $(document).ready(() => {
         $("#rfcP").val("");
         $("#corP").val("");
         $("#codP").val("");
+        load();
     };
 
     const validarDatos = data => {
@@ -113,6 +117,68 @@ $(document).ready(() => {
             })
     });
 
+    const actualizarProveedor = data => {
+        return new Promise((resolve, reject) => {
+            $.ajax({
+                url: '/actualizar/Proveedor',
+                type: 'PUT',
+                data: data,
+                datatype: 'json',
+                success: s => resolve(s),
+                error: e => reject(e)
+            });
+        });
+    };
+
+    $("#accionAct").click(() => {
+        mostrarAlerta('', '', false);
+        let data = {
+            idO: idPro,
+            idP: $("#idP").val(),
+            nombreP: $("#nombreP").val(),
+            dirP: $("#dirP").val(),
+            telP: $("#telP").val(),
+            rfcP: $("#rfcP").val(),
+            corP: $("#corP").val(),
+            codP: $("#codP").val()
+        };
+        validarDatos(data)
+            .then(v => {
+                let valid = true;
+                Object.keys(v).forEach(k => {
+                    let campo = $(`#${v[k].id}`)[0];
+                    valid = valid && !v[k].s;
+                    if (v[k].s) {
+                        if (campo.className.includes("is-valid")) {
+                            campo.className = campo.className.replace(" is-valid", " is-invalid");
+                        } else if (!campo.className.includes("is-invalid")) {
+                            campo.className += " is-invalid";
+                        }
+                        $(`#${k}`).html(v[k].msg);
+                    } else {
+                        if (campo.className.includes("is-invalid")) {
+                            campo.className = campo.className.replace(" is-invalid", " is-valid");
+                        } else if (!campo.className.includes("is-valid")) {
+                            campo.className += " is-valid";
+                        }
+                    }
+                });
+                if (valid) {
+                    actualizarProveedor(data)
+                        .then(rP => {
+                            idPro = rP.id;
+                            mostrarAlerta("actualizacion exitosa", 'success');
+                        })
+                        .catch(c => {
+                            mostrarAlerta(c.responseJSON.msg, 'danger');
+                        })
+                }
+            })
+            .catch(e => {
+                console.log(e);
+            })
+    });
+
     const leer = () => {
         return new Promise((resolve, reject) => {
             $.ajax({
@@ -181,9 +247,10 @@ $(document).ready(() => {
 
     const cargar = (pagina) => {
         let contenido = $("#datos")[0];
-        let max = Math.ceil(datos.length / 3);
-        let total = 3 * pagina;
-        let inicio = (pagina - 1) * 3;
+        let mostrar = 5;
+        let max = Math.ceil(datos.length / mostrar);
+        let total = mostrar * pagina;
+        let inicio = (pagina - 1) * mostrar;
         contenido.innerHTML = "";
         for (let i = inicio; i < total && i < datos.length; i++) {
             contenido.innerHTML += `
@@ -221,16 +288,14 @@ $(document).ready(() => {
                         <div class="col-md-2 col-xl-1 text-white dato1">
                             <label class="mt-2 mb-2">
                                 <div class="btn-group" role="group">
-                                    <button type="button" class="btn btn-primary text-white mr-2"
-                                        name="adquirir" title="Ver">
+                                    <button type="button" class="btn btn-primary text-white mr-2" name="ver" id="ver_${i}" title="Ver">
                                         <i class="fas fa-eye"></i>
                                     </button>
                                 </div>
                             </label>
                             <label class="mt-2 mb-2">
                                 <div class="btn-group" role="group">
-                                    <button type="button" class="btn btn-success text-white mr-2"
-                                        name="adquirir" title="Editar">
+                                    <button type="button" class="btn btn-success text-white mr-2" name="editar" id="edit_${i}" title="Editar">
                                         <i class="fas fa-edit"></i>
                                     </button>
                                 </div>
@@ -241,6 +306,26 @@ $(document).ready(() => {
             `;
         }
         pie(pagina, max);
+        $("[name='ver']").click(evt => {
+            let pos;
+            if (evt.target.nodeName == 'BUTTON') {
+                pos = evt.target.attributes.id.value.split("_")[1];
+            } else {
+                pos = evt.delegateTarget.attributes.id.value.split("_")[1];
+            }
+            verEditar(datos[pos].idP);
+        });
+        $("[name='editar']").click(evt => {
+            let pos;
+            if (evt.target.nodeName == 'BUTTON') {
+                pos = evt.target.attributes.id.value.split("_")[1];
+            } else {
+                pos = evt.delegateTarget.attributes.id.value.split("_")[1];
+            }
+            verEditar(datos[pos].idP, false);
+            $("#accionAct").attr('hidden', false);
+            $("#accionSalvar").attr('hidden', true);
+        })
     };
 
     const load = () => {
@@ -252,6 +337,22 @@ $(document).ready(() => {
             .catch(e => {
                 console.log(e);
             })
+    };
+
+    const verEditar = (datos, ver = true) => {
+        if (ver) {
+            $("#accionAct").attr('hidden', true);
+            $("#accionSalvar").attr('hidden', true);
+        }
+        $("#idP").val(datos.id).attr('disabled', ver);
+        $("#nombreP").val(datos.nombre).attr('disabled', ver);
+        $("#dirP").val(datos.direccion).attr('disabled', ver);
+        $("#telP").val(datos.telefono).attr('disabled', ver);
+        $("#rfcP").val(datos.RFC).attr('disabled', ver);
+        $("#corP").val(datos.correo).attr('disabled', ver);
+        $("#codP").val(datos.cp).attr('disabled', ver);
+        $("#proveedor").modal();
+        idPro = datos.id;
     };
 
     load();

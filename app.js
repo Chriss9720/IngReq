@@ -13,6 +13,7 @@ const web = require('./routers/web');
 const validaciones = require('./routers/validaciones');
 const registro = require('./routers/registro');
 const lecturas = require('./routers/lecturas');
+const actualizar = require('./routers/actualizar');
 
 const app = express();
 
@@ -26,6 +27,7 @@ app.use('/api/registro', registro);
 app.use('/auth', auth);
 app.use('/validar', validaciones);
 app.use('/leer', lecturas);
+app.use('/actualizar', actualizar);
 
 console.log(`${app.get('env')} ${config.get('configBD.HOST')}`);
 
