@@ -105,7 +105,7 @@
                             <!--Encabezado-->
                             <div class="row ml-1 mr-1 text-center">
                                 <div class="col-md-1 col-xl-1 bg-dark text-white">
-                                    <label for="#" class="mt-2 mb-2">#</label>
+                                    <label for="#" class="mt-2 mb-2">Id</label>
                                 </div>
                                 <div class="col-md-3 col-xl-2 bg-secondary text-white">
                                     <label class="mt-2 mb-2">Nombre</label>
@@ -124,74 +124,12 @@
                                 </div>
                             </div>
 
-                            <nav class="navbar navbar-expand-sm ml-1 mr-1 nav">
-                                <button class="navbar-toggler border-danger bg-dark mx-auto mb-2 mt-2 " type="button" data-toggle="collapse" data-target="#datoEjemplo" aria-controls="datoEjemplo" aria-expanded="datoEjemplo" aria-label="Toggle navigation">
-                                    <label for="#" class="text-white">CLICK ME <i class="fas fa-caret-down"></i></label>
-                                </button>
-                                <!-- Dato 1 -->
-                                <div class="row data text-center collapse navbar-collapse bg-white" id="datoEjemplo">
-                                    <div class="col-md-1 col-xl-1 text-white bg-dark dato1">
-                                        <div for="#" class="mt-2 mb-2">1</div>
-                                    </div>
-                                    <div class="col-md-3 col-xl-2 dato">
-                                        <div class="mt-2 mb-2">Vanessa</div>
-                                    </div>
-                                    <div class="col-md-2 col-xl-2 text-white bg-dark dato1">
-                                        <div class="mt-2 mb-2">1234567890</div>
-                                    </div>
-                                    <div class="col-md-2 col-xl-3 dato">
-                                        <div class="mt-2 mb-2">Colonia centro 1525</div>
-                                    </div>
-                                    <div class="col-md-2 col-xl-3 text-white bg-dark dato1">
-                                        <div class="mt-2 mb-2">Vanessa@gmail.com</div>
-                                    </div>
-                                    <div class="col-md-2 col-xl-1 text-white dato1">
-                                        <label class="mt-2 mb-2">
-                                            <div class="btn-group" role="group">
-                                                <button type="button" class="btn btn-primary text-white mr-2"
-                                                    name="adquirir" title="Ver">
-                                                    <i class="fas fa-eye"></i>
-                                                </button>
-                                            </div>
-                                        </label>
-                                        <label class="mt-2 mb-2">
-                                            <div class="btn-group" role="group">
-                                                <button type="button" class="btn btn-success text-white mr-2"
-                                                    name="adquirir" title="Editar">
-                                                    <i class="fas fa-edit"></i>
-                                                </button>
-                                            </div>
-                                        </label>
-                                    </div>
-                                </div>
-                            </nav>
+                            <div id="datos"></div>
+
                         </div>
                         <!--Pie de pagina-->
                         <div class="card-footer">
-                            <div class="mt-3 mb-0">
-                                <nav aria-label="Page-Nav">
-                                    <ul class="pagination justify-content-center">
-                                        <li class="page-item disabled">
-                                            <a href="#" class="page-link" aria-label="Previous">
-                                                <span aria-hidden="true">&laquo;</span>
-                                            </a>
-                                        </li>
-                                        <li class="page-item active">
-                                            <a href="#" class="page-link" aria-label="Previous">1</a>
-                                        </li>
-                                        <li class="page-item">
-                                            <a href="#" class="page-link" aria-label="Previous">2</a>
-                                        </li>
-                                        <li class="page-item">
-                                            <a href="#" class="page-link" aria-label="Previous">3</a>
-                                        </li>
-                                        <li class="page-item">
-                                            <a href="#" class="page-link" aria-label="Next">
-                                                <span aria-hidden="true">&raquo;</span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </nav>
+                            <div class="mt-3 mb-0" id="pie">
                             </div>
                         </div>
                     </div>

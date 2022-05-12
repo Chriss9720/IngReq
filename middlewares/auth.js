@@ -28,6 +28,7 @@ const verificarToken = (req, res, next) => {
     }
     jwt.verify(token, config.get("ConfigTk.SEED"), (err, datos) => {
         if (err) {
+            console.log("M muerto");
             return cargar('Denegado', res);
         } else {
             req.data = datos;
