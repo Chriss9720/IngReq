@@ -13,6 +13,7 @@
     <script src="https://kit.fontawesome.com/0b3284a19f.js" crossorigin="anonymous"></script>
     <!--Css-->
     <link rel="stylesheet" href="../../css/Productos.css">
+    <link rel="stylesheet" href="../../css/menu.css">
     <title>Panel de articulos</title>
 </head>
 
@@ -22,8 +23,8 @@
             <a href="/" class="navbar-brand">Mi Pagina</a>
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item dropdown mr-3">
-                    <a href="" class="nav-link dropdown-toggle" data-toggle="dropdown">Bienvenido Jose <i
-                            class="fas fa-user"></i></a>
+                    <a href="" class="nav-link dropdown-toggle" data-toggle="dropdown">Bienvenido Jose
+                        <i class="fas fa-user"></i></a>
                     <div class="dropdown-menu">
                         <a href="perfil.html" class="dropdown-item hover"><i class="fas fa-user-circle"></i> perfil</a>
                         <a href="#" class="dropdown-item hover"><i class="fas fa-cog"></i> Configuraciones</a>
@@ -41,7 +42,9 @@
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
-                            <a href="/">Inicio</a>
+                            <form method="post" action="/Administrar">
+                                <input type="submit" value="Inicio" class="link">
+                            </form>
                         </li>
                         <li class="breadcrumb-item active">Articulos</li>
                     </ol>
@@ -276,7 +279,8 @@
                                     <div>
                                         <label class="h4 mr-1 ml-1 mb-1 mt-1">
                                             <span class="badge badge-secondary">Cat_1
-                                                <img src='../../img/tacha.png' style="height:25px;cursor:pointer;" name="quitarMat" id="mat_${i}">
+                                                <img src='../../img/tacha.png' style="height:25px;cursor:pointer;"
+                                                    name="quitarMat" id="mat_${i}">
                                             </span>
                                         </label>
                                     </div>

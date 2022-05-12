@@ -26,6 +26,6 @@ ruta.post('/inicio', (req, res) => cargar('inicio', res));
 
 ruta.post('/Administrar', auth, (req, res) => cargar('vendedor/Vendedor', res));
 
-ruta.post('/cambio/:seccion', (req, res) => cargar(`vendedor/${req.params.seccion}`, res));
+ruta.post('/Administrar/:seccion', (req, res) => cargar(`vendedor/${req.params.seccion}`, res));
 
 module.exports = ruta;

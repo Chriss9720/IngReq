@@ -28,13 +28,7 @@ let verificarToken = (req, res, next) => {
     }
     jwt.verify(token, config.get("ConfigTk.SEED"), (err, datos) => {
         if (!err) {
-            if (datos.vendedor) {
-                return cargar('Vendedor', res);
-            } else if (datos.comprador) {
-                return cargar('Comprador', res);
-            } else {
-                next();
-            }
+            return cargar('inicio', res);
         } else {
             next();
         }
