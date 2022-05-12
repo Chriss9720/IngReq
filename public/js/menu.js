@@ -1,6 +1,5 @@
 $(document).ready(() => {
 
-
     const armarMenu = () => {
         $("#menu").html(`
             <form method="post" id="cambio">
@@ -24,5 +23,7 @@ $(document).ready(() => {
     };
 
     armarMenu();
+
+    $("#salir").click(() => document.cookie = `token="";max-age=0;path=/;`);
 
 });

@@ -76,7 +76,7 @@
                 <!--btn add-->
                 <div class="col-12 text-center">
                     <button class="btn btn-primary" name="adquirir">
-                            <i class="fas fa-plus"></i> Registrar proveedor
+                        <i class="fas fa-plus"></i> Registrar proveedor
                     </button>
                 </div>
                 <div class="col-12 d-flex d-inline text-center justify-content-center mt-2">
@@ -148,14 +148,16 @@
                                     <div class="col-md-2 col-xl-1 text-white dato1">
                                         <label class="mt-2 mb-2">
                                             <div class="btn-group" role="group">
-                                                <button type="button" class="btn btn-primary text-white mr-2" name="adquirir" title="Ver">
+                                                <button type="button" class="btn btn-primary text-white mr-2"
+                                                    name="adquirir" title="Ver">
                                                     <i class="fas fa-eye"></i>
                                                 </button>
                                             </div>
                                         </label>
                                         <label class="mt-2 mb-2">
                                             <div class="btn-group" role="group">
-                                                <button type="button" class="btn btn-success text-white mr-2" name="adquirir" title="Editar">
+                                                <button type="button" class="btn btn-success text-white mr-2"
+                                                    name="adquirir" title="Editar">
                                                     <i class="fas fa-edit"></i>
                                                 </button>
                                             </div>
@@ -211,40 +213,49 @@
                     </button>
                 </div>
                 <div class="modal-body">
+                    <div name="errRP"></div>
                     <div class="form-group">
-                        <label for="">Id</label>
-                        <input type="text" class="form-control">
+                        <label for="idP">Id</label>
+                        <input type="text" name="idP" id="idP" class="form-control">
+                        <div id="errId" class="invalid-feedback"></div>
                     </div>
                     <div class="form-group">
-                        <label for="">Nombre</label>
-                        <input type="text" class="form-control">
+                        <label for="nombreP">Nombre</label>
+                        <input type="text" name="nombreP" id="nombreP" class="form-control">
+                        <div id="errNombre" class="invalid-feedback"></div>
                     </div>
                     <div class="form-group">
-                        <label for="">Direccion</label>
-                        <input type="text" class="form-control">
+                        <label for="dirP">Direccion</label>
+                        <input type="text" name="dirP" id="dirP" class="form-control">
+                        <div id="errDir" class="invalid-feedback"></div>
                     </div>
                     <div class="form-group">
-                        <label for="">Telefono</label>
-                        <input type="text" class="form-control">
+                        <label for="telP">Telefono</label>
+                        <input type="text" name="telP" id="telP" class="form-control">
+                        <div id="errTelefono" class="invalid-feedback"></div>
                     </div>
                     <div class="form-group">
-                        <label for="">RFC</label>
-                        <input type="text" class="form-control">
+                        <label for="rfcP">RFC</label>
+                        <input type="text" name="rfcP" id="rfcP" class="form-control">
+                        <div id="errRfc" class="invalid-feedback"></div>
                     </div>
                     <div class="form-group">
-                        <label for="">Correo</label>
-                        <input type="text" class="form-control">
+                        <label for="corP">Correo</label>
+                        <input type="email" name="corP" id="corP" class="form-control">
+                        <div id="errEmail" class="invalid-feedback"></div>
                     </div>
                     <div class="form-group">
-                        <label for="">Codigo postal</label>
-                        <input type="text" class="form-control">
+                        <label for="codP">Codigo postal</label>
+                        <input type="text" name="codP" id="codP" class="form-control">
+                        <div id="errcodP" class="invalid-feedback"></div>
                     </div>
+                    <div name="errRP"></div>
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal" aria-label="close">
                         Cerrar
                     </button>
-                    <button id="psv" class="btn btn-primary" type="button" aria-label="close">
+                    <button id="salvarProveedor" class="btn btn-primary" type="button" aria-label="close">
                         <i class="fas fa-save"></i> Guardar
                     </button>
                 </div>

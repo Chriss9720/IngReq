@@ -1,6 +1,8 @@
 const express = require('express');
 const ruta = express.Router();
 const Joi = require('@hapi/joi');
+const auth = require('../middlewares/auth');
+const Usuarios = require('../models/Usuarios');
 
 const validarNombre = Joi.object({
     nombre: Joi.string().pattern(/^[ña-zA-Z\s]+$/).required().error(errores => {
@@ -123,17 +125,80 @@ const validarDirrecion = Joi.object({
     })
 });
 
-const validar = (data, campo, joi, body) => {
+const valdiarCodPos = Joi.object({
+    codigoP: Joi.string().min(5).max(5).pattern(/^[0-9]+$/).required().error(errores => {
+        errores.forEach(e => {
+            switch (e.code) {
+                case "string.empty":
+                    e.message = "Ingrese su codigo postal";
+                    break;
+                case 'string.pattern.name':
+                case "string.pattern.base":
+                case "string.pattern.invert.name":
+                case "string.pattern.invert.base":
+                    e.message = "Solo se permiten numeros";
+                    break;
+                case "string.min":
+                case 'string.max':
+                    e.message = "Longitud minima y maxima de 5";
+                    break;
+            }
+        })
+        return errores;
+    })
+});
+
+const validarRfc = Joi.object({
+    rfc: Joi.string().min(13).max(13).pattern(/^[ña-zA-Z\d]+$/).required().error(errores => {
+        errores.forEach(e => {
+            switch (e.code) {
+                case 'string.empty':
+                    e.message = "Ingrese su rfc";
+                    break;
+                case 'string.pattern.name':
+                case "string.pattern.base":
+                case "string.pattern.invert.name":
+                case "string.pattern.invert.base":
+                    e.message = "Solo se permiten letras mayusculas, minusculas y digitos";
+                    break;
+                case "string.min":
+                case 'string.max':
+                    e.message = "Longitud minima y maxima de 13";
+                    break;
+            }
+        });
+        return errores;
+    })
+});
+
+const validarId = Joi.object({
+    id: Joi.string().min(3).required().error(errores => {
+        errores.forEach(e => {
+            switch (e.code) {
+                case 'string.empty':
+                    e.message = "Ingrese un id";
+                    break;
+                case "string.min":
+                case 'string.max':
+                    e.message = "Longitud minima 3";
+                    break;
+            }
+        });
+        return errores;
+    })
+});
+
+const validar = (data, campo, joi, body, id = undefined) => {
     let { error } = joi.validate(body);
     if (error) data[campo] = {
         s: true,
         msg: error.message,
-        id: Object.keys(body)[0]
+        id: id || Object.keys(body)[0]
     }
     else {
         data[campo] = {
             s: false,
-            id: Object.keys(body)[0]
+            id: id || Object.keys(body)[0]
         }
     }
     return data;
@@ -151,12 +216,53 @@ ruta.post('/registro', (req, res) => {
     res.json(errores);
 });
 
+ruta.post('/registroProveedores', auth, (req, res) => {
+    let errores = {};
+    let { idP, nombreP, dirP, telP, rfcP, corP, codP } = req.body;
+    errores = validar(errores, "errId", validarId, { id: idP }, 'idP');
+    errores = validar(errores, "errNombre", validarNombre, { nombre: nombreP }, 'nombreP');
+    errores = validar(errores, "errEmail", validarEmail, { email: corP }, 'corP');
+    errores = validar(errores, "errTelefono", validarTelefono, { telefono: telP }, 'telP');
+    errores = validar(errores, 'errRfc', validarRfc, { rfc: rfcP }, 'rfcP');
+    errores = validar(errores, "errDir", validarDirrecion, { direccion: dirP }, 'dirP');
+    errores = validar(errores, 'errcodP', valdiarCodPos, { codigoP: codP }, 'codP');
+    res.json(errores);
+});
+
 ruta.post('/login', (req, res) => {
     let errores = {};
     let { clave, email } = req.body;
     errores = validar(errores, "errEmail", validarEmail, { email });
     errores = validar(errores, "errClave", validarClave, { clave });
     res.json(errores);
+});
+
+ruta.post('/existeProveedores', auth, (req, res) => {
+    Usuarios.findById(req.data._id)
+        .then(data => {
+            if (data.proveedores && data.proveedores.length > 0) {
+                res.json(data.proveedores);
+            } else {
+                res.status(404).json({ msg: "No hay proveedores registrados" });
+            }
+        })
+        .catch(c => {
+            res.status(404).json({ msg: "No hay proveedores registrados" });
+        });
+});
+
+ruta.post('/existeCategorias', auth, (req, res) => {
+    Usuarios.findById(req.data._id)
+        .then(data => {
+            if (data.categorias && data.categorias.length > 0) {
+                res.json(data.categorias);
+            } else {
+                res.status(404).json({ msg: "No hay categorias registradas" });
+            }
+        })
+        .catch(c => {
+            res.status(404).json({ msg: "No hay categorias registradas" });
+        });
 });
 
 module.exports = ruta;

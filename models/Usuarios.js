@@ -7,7 +7,28 @@ const usuarios = new Schema({
     clave: { type: String, required: true },
     telefono: { type: String, required: true },
     curp: { type: String, required: true },
-    direccion: { type: String, required: true }
+    direccion: { type: String, required: true },
+    proveedores: [{
+        idP: {
+            type: Schema.Types.ObjectId,
+            ref: 'Proveedores'
+        }
+    }],
+    cupones: [{
+        idC: {
+            type: Schema.Types.ObjectId,
+            ref: 'Cupones'
+        }
+    }],
+    categorias: [{
+        type: String
+    }],
+    productos: [{
+        idP: {
+            type: Schema.Types.ObjectId,
+            ref: 'Articulo'
+        }
+    }]
 });
 
 module.exports = Mongoose.model("Usuarios", usuarios);
