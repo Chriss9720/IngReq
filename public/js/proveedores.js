@@ -4,27 +4,24 @@ $(document).ready(() => {
     let idPro;
 
     $('[name="adquirir"]').click(() => {
+        reset();
         $("#accionAct").attr('hidden', true);
         $("#accionSalvar").attr('hidden', false);
+        $("#accionDel").attr('hidden', true);
         $('#proveedor').modal();
     });
 
-    const reset = v => {
-        Object.keys(v).forEach(k => {
-            let campo = $(`#${v[k].id}`)[0];
+    const reset = () => {
+        mostrarAlerta('', '', false);
+        ["idP", "nombreP", "dirP", "telP", "rfcP", "corP", "codP"].forEach(k => {
+            let campo = $(`#${k}`)[0];
             if (campo.className.includes("is-valid")) {
                 campo.className = campo.className.replace(" is-valid", "");
             } else if (campo.className.includes("is-invalid")) {
                 campo.className = campo.className.replace(" is-invalid", "");
             }
-        });
-        $("#idP").val("");
-        $("#nombreP").val("");
-        $("#dirP").val("");
-        $("#telP").val("");
-        $("#rfcP").val("");
-        $("#corP").val("");
-        $("#codP").val("");
+            campo.value = "";
+        })
         load();
     };
 
@@ -103,7 +100,7 @@ $(document).ready(() => {
                 if (valid) {
                     registrarProveedor(data)
                         .then(rP => {
-                            reset(v);
+                            reset();
                             mostrarAlerta("registro exitoso", 'success');
                         })
                         .catch(c => {
@@ -168,6 +165,7 @@ $(document).ready(() => {
                         .then(rP => {
                             idPro = rP.id;
                             mostrarAlerta("actualizacion exitosa", 'success');
+                            load();
                         })
                         .catch(c => {
                             mostrarAlerta(c.responseJSON.msg, 'danger');
@@ -177,6 +175,34 @@ $(document).ready(() => {
             .catch(e => {
                 console.log(e);
             })
+    });
+
+    const eliminar = () => {
+        return new Promise((resolve, reject) => {
+            $.ajax({
+                url: '/eliminar/Proveedor',
+                type: 'DELETE',
+                data: {
+                    idP: $("#idP").val()
+                },
+                datatype: 'json',
+                success: s => resolve(s),
+                error: e => reject(e)
+            });
+        });
+    };
+
+    $("#eliminarProveedor").click(() => {
+        mostrarAlerta('', '', false);
+        eliminar()
+            .then(del => {
+                reset();
+                mostrarAlerta(del.msg, 'success');
+            })
+            .catch(c => {
+                mostrarAlerta(c.msg, 'danger');
+            })
+        load();
     });
 
     const leer = () => {
@@ -253,7 +279,8 @@ $(document).ready(() => {
         let inicio = (pagina - 1) * mostrar;
         contenido.innerHTML = "";
         for (let i = inicio; i < total && i < datos.length; i++) {
-            contenido.innerHTML += `
+            try {
+                contenido.innerHTML += `
                 <nav class="navbar navbar-expand-sm ml-1 mr-1 nav">
                     <button class="navbar-toggler border-danger bg-dark mx-auto mb-2 mt-2 " type="button" data-toggle="collapse" data-target="#datoEjemplo" aria-controls="datoEjemplo" aria-expanded="datoEjemplo" aria-label="Toggle navigation">
                         <label for="#" class="text-white">Pulse para ver ${datos[i].idP.id}<i class="fas fa-caret-down"></i></label>
@@ -300,13 +327,24 @@ $(document).ready(() => {
                                     </button>
                                 </div>
                             </label>
+                            <label class="mt-2 mb-2">
+                                <div class="btn-group" role="group">
+                                    <button type="button" class="btn btn-danger text-white mr-2" name="del" id="del_${i}" title="Editar">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </label>
                         </div>
                     </div>
                 </nav>
             `;
+            } catch (e) {
+                console.log(e)
+            }
         }
         pie(pagina, max);
         $("[name='ver']").click(evt => {
+            reset();
             let pos;
             if (evt.target.nodeName == 'BUTTON') {
                 pos = evt.target.attributes.id.value.split("_")[1];
@@ -314,8 +352,10 @@ $(document).ready(() => {
                 pos = evt.delegateTarget.attributes.id.value.split("_")[1];
             }
             verEditar(datos[pos].idP);
+            mostrarAlerta('', '', false);
         });
         $("[name='editar']").click(evt => {
+            reset();
             let pos;
             if (evt.target.nodeName == 'BUTTON') {
                 pos = evt.target.attributes.id.value.split("_")[1];
@@ -325,7 +365,23 @@ $(document).ready(() => {
             verEditar(datos[pos].idP, false);
             $("#accionAct").attr('hidden', false);
             $("#accionSalvar").attr('hidden', true);
-        })
+            $("#accionDel").attr('hidden', true);
+            mostrarAlerta('', '', false);
+        });
+        $("[name='del']").click(evt => {
+            reset();
+            let pos;
+            if (evt.target.nodeName == 'BUTTON') {
+                pos = evt.target.attributes.id.value.split("_")[1];
+            } else {
+                pos = evt.delegateTarget.attributes.id.value.split("_")[1];
+            }
+            verEditar(datos[pos].idP);
+            $("#accionAct").attr('hidden', true);
+            $("#accionSalvar").attr('hidden', true);
+            $("#accionDel").attr('hidden', false);
+            mostrarAlerta('', '', false);
+        });
     };
 
     const load = () => {
