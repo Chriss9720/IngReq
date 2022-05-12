@@ -20,9 +20,7 @@ const cargar = (pagina, res) => {
 
 ruta.get('/', index, (req, res) => cargar('index', res));
 
-ruta.get('/RegistroVendedor', (req, res) => cargar('RegistroVendedor', res));
-
-ruta.get('/RegistroComprador', (req, res) => cargar('RegistroComprador', res));
+ruta.get('/Registro', (req, res) => cargar('Registro', res));
 
 ruta.get('/Comprador', auth, (req, res) => {
     let data = req.data;

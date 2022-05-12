@@ -12,8 +12,8 @@
     <!--Font-->
     <script src="https://kit.fontawesome.com/0b3284a19f.js" crossorigin="anonymous"></script>
     <!--Css-->
-    <link rel="stylesheet" href="../css/Productos.css">
-    <title>Panel de articulos</title>
+    <link rel="stylesheet" href="../../css/Productos.css" />
+    <title>Panel del vendedor</title>
 </head>
 
 <body class="bg-light">
@@ -22,7 +22,8 @@
             <a href="/" class="navbar-brand">Mi Pagina</a>
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item dropdown mr-3">
-                    <a href="" class="nav-link dropdown-toggle" data-toggle="dropdown">Bienvenido Jose <i class="fas fa-user"></i></a>
+                    <a href="" class="nav-link dropdown-toggle" data-toggle="dropdown">Bienvenido Jose <i
+                            class="fas fa-user"></i></a>
                     <div class="dropdown-menu">
                         <a href="perfil.html" class="dropdown-item hover"><i class="fas fa-user-circle"></i> perfil</a>
                         <a href="#" class="dropdown-item hover"><i class="fas fa-cog"></i> Configuraciones</a>
@@ -42,7 +43,7 @@
                         <li class="breadcrumb-item">
                             <a href="/">Inicio</a>
                         </li>
-                        <li class="breadcrumb-item active">Inventario</li>
+                        <li class="breadcrumb-item active">Proveedores</li>
                     </ol>
                 </nav>
             </div>
@@ -64,41 +65,24 @@
                         </h4>
                     </div>
                     <div id="menu" class="collapse card-body show">
-                        <ul class="list-group">
-                            <li name="menu" class="list-group-item list-group-item-secondary d-flex justify-content-between align-items-center hover" title="500">
-                                <a href="inventario.html" class="text-dark">Invetario</a>
-                                <span class="badge badge-primary badge-pill">500</span>
-                            </li>
-                            <li name="menu" class="list-group-item list-group-item-secondary d-flex justify-content-between align-items-center hover" title="80">
-                                <a href="Reportes.html" class="text-dark">Reportes</a>
-                                <span class="badge badge-primary badge-pill">80</span>
-                            </li>
-                            <li class="list-group-item list-group-item-secondary d-flex justify-content-between align-items-center hover">
-                                <a href="proveedor.html" class="text-dark">Proveedores</a>
-                            </li>
-                            <li class="list-group-item list-group-item-secondary d-flex justify-content-between align-items-center hover">
-                                <a href="#" class="text-dark">Cupones</a>
-                            </li>
-                            <li class="list-group-item list-group-item-secondary d-flex justify-content-between align-items-center hover">
-                                <a href="Articulos.html" class="text-dark">Articulos</a>
-                            </li>
-                            <li class="list-group-item list-group-item-secondary d-flex justify-content-between align-items-center hover">
-                                <a href="comprar.html" class="text-dark">Comprar</a>
-                            </li>
-                        </ul>
                     </div>
                 </div>
             </div>
             <!--De 6 col-->
             <div class="col-sm-12 col-lg-9 mt-sm-3 mt-md-3" id="panelControl">
                 <!--btn add-->
+                <div class="col-12 text-center">
+                    <button class="btn btn-primary" name="adquirir">
+                            <i class="fas fa-plus"></i> Registrar proveedor
+                    </button>
+                </div>
                 <div class="col-12 d-flex d-inline text-center justify-content-center mt-2">
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="basic-addon1">
                             <i class="fas fa-search"></i>
                         </span>
                     </div>
-                    <input type="text" class="form-control w-75 border text-center" placeholder="Nombre del articulo">
+                    <input type="text" class="form-control w-75 border text-center" placeholder="Nombre del proveedor">
                     <button type="button" class="btn btn-success">Buscar</button>
                 </div>
                 <!--Tabla responsiba mia-->
@@ -107,7 +91,7 @@
                     <div class="card-header bg-dark text-white text-center">
                         <h4>
                             <a href="#MiTabla" class="text-white dropdown-toggle" data-parent="#ContenedorMenu" data-toggle="collapse">
-                                <i class="fas fa-table"></i> Inventario
+                                <i class="fas fa-table"></i> Proveedores agregados recientemente
                             </a>
                         </h4>
                     </div>
@@ -117,22 +101,22 @@
                         <div class="card-body" id="DatosDeTabla">
                             <!--Encabezado-->
                             <div class="row ml-1 mr-1 text-center">
-                                <div class="col-sm-1 col-md-1 bg-dark text-white">
+                                <div class="col-md-1 col-xl-1 bg-dark text-white">
                                     <label for="#" class="mt-2 mb-2">#</label>
                                 </div>
-                                <div class="col-sm-3 col-md-3 bg-secondary text-white">
+                                <div class="col-md-3 col-xl-2 bg-secondary text-white">
                                     <label class="mt-2 mb-2">Nombre</label>
                                 </div>
-                                <div class="col-sm-2 col-md-2 bg-dark text-white">
-                                    <label class="mt-2 mb-2">Cantidad</label>
+                                <div class="col-md-2 col-xl-2 bg-dark text-white">
+                                    <label class="mt-2 mb-2">Telefono</label>
                                 </div>
-                                <div class="col-sm-2 col-md-2 bg-secondary text-white">
-                                    <label class="mt-2 mb-2">Punto de reorden</label>
+                                <div class="col-md-2 col-xl-3 bg-secondary text-white">
+                                    <label class="mt-2 mb-2">Direccion</label>
                                 </div>
-                                <div class="col-sm-2 col-md-2 bg-dark text-white">
-                                    <label class="mt-2 mb-2">Dias de credito</label>
+                                <div class="col-md-2 col-xl-3 bg-dark text-white">
+                                    <label class="mt-2 mb-2">correo</label>
                                 </div>
-                                <div class="col-sm-4 col-md-2 bg-secondary text-white">
+                                <div class="col-md-2 col-xl-1 bg-secondary text-white">
                                     <label class="mt-2 mb-2">Acciones</label>
                                 </div>
                             </div>
@@ -143,25 +127,25 @@
                                 </button>
                                 <!-- Dato 1 -->
                                 <div class="row data text-center collapse navbar-collapse bg-white" id="datoEjemplo">
-                                    <div class="col-sm-1 col-md-1 text-white bg-dark dato">
-                                        <label for="#" class="mt-2 mb-2">1</label>
+                                    <div class="col-md-1 col-xl-1 text-white bg-dark dato1">
+                                        <div for="#" class="mt-2 mb-2">1</div>
                                     </div>
-                                    <div class="col-sm-3 col-md-3 dato">
-                                        <label class="mt-2 mb-2">TV</label>
+                                    <div class="col-md-3 col-xl-2 dato">
+                                        <div class="mt-2 mb-2">Vanessa</div>
                                     </div>
-                                    <div class="col-sm-2 col-md-2 text-white bg-dark dato">
-                                        <label class="mt-2 mb-2">100</label>
+                                    <div class="col-md-2 col-xl-2 text-white bg-dark dato1">
+                                        <div class="mt-2 mb-2">1234567890</div>
                                     </div>
-                                    <div class="col-sm-2 col-md-2 dato">
-                                        <label class="mt-2 mb-2">25</label>
+                                    <div class="col-md-2 col-xl-3 dato">
+                                        <div class="mt-2 mb-2">Colonia centro 1525</div>
                                     </div>
-                                    <div class="col-sm-2 col-md-2 text-white bg-dark dato">
-                                        <label class="mt-2 mb-2">200</label>
+                                    <div class="col-md-2 col-xl-3 text-white bg-dark dato1">
+                                        <div class="mt-2 mb-2">Vanessa@gmail.com</div>
                                     </div>
-                                    <div class="col-sm-4 col-md-2 text-white dato">
+                                    <div class="col-md-2 col-xl-1 text-white dato1">
                                         <label class="mt-2 mb-2">
                                             <div class="btn-group" role="group">
-                                                <button type="button" class="btn btn-primary text-white mr-2" name="modificar_1" title="Ver">
+                                                <button type="button" class="btn btn-primary text-white mr-2" name="adquirir" title="Ver">
                                                     <i class="fas fa-eye"></i>
                                                 </button>
                                             </div>
@@ -211,76 +195,55 @@
         </div>
     </div>
 
-    <!--Modal agregar productos-->
-    <div class="modal fade" id="modal" tabindex="-1" role="dialog">
-        <div class="modal-dialog modal-xl" role="document">
+    <!--Modal adquirir proveedore-->
+    <div class="modal fade" id="proveedor" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header breadcrumb">
                     <div class="mx-auto">
-                        <h5 class="modal-title" id="Titulo-modal">Comprar Producto</h5>
+                        <h5 class="modal-title" id="Titulo-modal">Registrar proveedor</h5>
                     </div>
                     <button class="close" data-dismiss="modal" aria-label="close">
                         <span aria-hidden="true"><i class="fas fa-times-circle"></i></span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <div class="row">
-                        <div class="col-sm-12 col-md-12 col-lg-8 col-xl-8">
-                            <form>
-                                <div class="form-group">
-                                    <label>Dias de credito:</label>
-                                    <input type="text" class="form-control" />
-                                </div>
-                                <div class="form-group">
-                                    <label>Nombre:</label>
-                                    <input type="text" class="form-control" />
-                                </div>
-                                <div class="form-group">
-                                    <label>Cantidad:</label>
-                                    <input type="text" class="form-control" disabled/>
-                                </div>
-                                <div class="form-group">
-                                    <label>Unidades de compra:</label>
-                                    <input type="text" class="form-control" />
-                                </div>
-                                <div class="form-group">
-                                    <label>Unidades de venta:</label>
-                                    <input type="text" class="form-control" />
-                                </div>
-                                <div class="form-group">
-                                    <label>Costo:</label>
-                                    <input type="text" class="form-control" />
-                                </div>
-                                <div class="form-group">
-                                    <label>Costo Promedio:</label>
-                                    <input type="text" class="form-control" disabled />
-                                </div>
-                                <div class="form-group">
-                                    <label>Precio de venta:</label>
-                                    <input type="text" class="form-control" />
-                                </div>
-                                <div class="form-group">
-                                    <label>Precio de mayoreo:</label>
-                                    <input type="text" class="form-control" />
-                                </div>
-                                <div class="form-group">
-                                    <label>Punto de reorden</label>
-                                    <input type="text" class="form-control" />
-                                </div>
-                            </form>
-                        </div>
-                        <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4">
-                            <img src="../img/none.jpg" alt="imagen no encontrada" class="img-fluid img-thumbnail" id="foto_pro">
-                        </div>
+                    <div class="form-group">
+                        <label for="">Id</label>
+                        <input type="text" class="form-control">
                     </div>
-                    <div class="modal-footer">
-                        <button class="btn btn-secondary" type="button" data-dismiss="modal" aria-label="close">
+                    <div class="form-group">
+                        <label for="">Nombre</label>
+                        <input type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="">Direccion</label>
+                        <input type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="">Telefono</label>
+                        <input type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="">RFC</label>
+                        <input type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="">Correo</label>
+                        <input type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="">Codigo postal</label>
+                        <input type="text" class="form-control">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal" aria-label="close">
                         Cerrar
                     </button>
-                        <button id="psv" class="btn btn-primary" type="button" aria-label="close">
-                        <i class="fas fa-save"></i> Adquirir
+                    <button id="psv" class="btn btn-primary" type="button" aria-label="close">
+                        <i class="fas fa-save"></i> Guardar
                     </button>
-                    </div>
                 </div>
             </div>
         </div>
@@ -290,12 +253,12 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <!--CKEditor-->
-    <script src="//cdn.ckeditor.com/4.16.2/basic/ckeditor.js"></script>
     <!--Js personal-->
-    <script src="../js/Invetario.js"></script>
+    <script src="../../js/proveedores.js"></script>
+    <script src="../../js/menu.js"></script>
 </body>
 
 </html>

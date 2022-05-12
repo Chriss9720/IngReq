@@ -1,15 +1,17 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const config = require('config');
-const registroVendedor = require('./routers/Registro');
-const web = require('./routers/web');
 const fileUpload = require('express-fileupload');
-const auth = require('./routers/auth');
 const cookieParser = require('cookie-parser');
 
 mongoose.connect(config.get('configBD.HOST'), { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })
     .then(res => console.log("Conectado"))
     .catch(err => console.log("Error al conectar con la bd"));
+
+const auth = require('./routers/auth');
+const web = require('./routers/web');
+const validaciones = require('./routers/validaciones');
+const registro = require('./routers/registro');
 
 const app = express();
 
@@ -19,8 +21,9 @@ app.use(express.json());
 app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }));
 app.use('/', web);
-app.use('/api/registro', registroVendedor);
+app.use('/api/registro', registro);
 app.use('/auth', auth);
+app.use('/validar', validaciones);
 
 console.log(`${app.get('env')} ${config.get('configBD.HOST')}`);
 

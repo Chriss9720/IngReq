@@ -4,7 +4,7 @@
     "description": "Proyecto de una pagina de ventas para la materia de ingenieria de requiermientos impartida por el maestro Juan Salvador Hernandez Gomez",
     "main": "app.js",
     "scripts": {
-        "start": "node app.js",
+        "start": "nodemon app.js",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "keywords": [],
