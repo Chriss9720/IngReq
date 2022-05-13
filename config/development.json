@@ -1,5 +1,5 @@
 {
-    "Nombre": "Mi Login",
+    "Nombre": "Proyecto de calidad de software",
     "configBD": {
         "HOST": "mongodb://localhost:27017/Requerimientos"
     },

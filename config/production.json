@@ -1,5 +1,5 @@
 {
-    "Nombre": "Mi Login",
+    "Nombre": "Proyecto de calidad de software",
     "configBD": {
         "HOST": "mongodb+srv://root:root@cluster0.139jj.mongodb.net/Requerimientos?retryWrites=true&w=majority"
     },

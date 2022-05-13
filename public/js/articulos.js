@@ -53,5 +53,17 @@ $(document).ready(() => {
         nombre.innerText = "Seleccione la foto";
     });
 
+    const lerrProv = () => {
+        return new Promise((resolve, reject) => {
+            $.ajax({
+                url: '/leer/proveedores',
+                type: 'post',
+                datatype: 'json',
+                success: s => resolve(s),
+                error: e => reject(e)
+            });
+        });
+    };
+
 
 });
