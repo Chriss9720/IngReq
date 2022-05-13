@@ -32,7 +32,6 @@ const verificarToken = (req, res, next) => {
             return cargar('Denegado', res);
         } else {
             req.data = datos;
-            console.log("v token");
             next();
         }
     });

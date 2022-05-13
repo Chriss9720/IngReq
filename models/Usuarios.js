@@ -21,7 +21,10 @@ const usuarios = new Schema({
         }
     }],
     categorias: [{
-        type: String
+        cat: {
+            type: Schema.Types.ObjectId,
+            ref: 'Categorias'
+        }
     }],
     productos: [{
         idP: {

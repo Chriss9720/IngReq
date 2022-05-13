@@ -218,44 +218,62 @@
                         <div class="col-sm-12 col-md-12 col-lg-8 col-xl-8">
                             <form>
                                 <div class="form-group">
+                                    <label>Id:</label>
+                                    <input id="id" type="text" class="form-control" />
+                                    <div id="errId" class="invalid-feedback"></div>
+                                </div>
+                                <div class="form-group">
                                     <label>Dias de credito:</label>
-                                    <input type="text" class="form-control" />
+                                    <input id="diasC" type="text" class="form-control" />
+                                    <div id="errDiasC" class="invalid-feedback"></div>
                                 </div>
                                 <div class="form-group">
                                     <label>Nombre:</label>
-                                    <input type="text" class="form-control" />
+                                    <input id="nombre" type="text" class="form-control" />
+                                    <div id="errNombre" class="invalid-feedback"></div>
                                 </div>
                                 <div class="form-group">
                                     <label>Cantidad:</label>
-                                    <input type="text" class="form-control" disabled />
+                                    <input id="cantidad" type="text" class="form-control" />
+                                    <div id="errCantidad" class="invalid-feedback"></div>
                                 </div>
                                 <div class="form-group">
                                     <label>Unidades de compra:</label>
-                                    <input type="text" class="form-control" />
+                                    <input id="unidadesC" type="text" class="form-control" />
+                                    <div id="errUnidadesC" class="invalid-feedback"></div>
                                 </div>
                                 <div class="form-group">
                                     <label>Unidades de venta:</label>
-                                    <input type="text" class="form-control" />
+                                    <input id="unidadesV" type="text" class="form-control" />
+                                    <div id="errUnidadesV" class="invalid-feedback"></div>
                                 </div>
                                 <div class="form-group">
                                     <label>Costo:</label>
-                                    <input type="text" class="form-control" />
+                                    <input id="costo" type="text" class="form-control" />
+                                    <div id="errCosto" class="invalid-feedback"></div>
+                                </div>
+                                <div>
+                                    <input id="calCost" type="button" value="Calcular costo" class="btn btn-info">
                                 </div>
                                 <div class="form-group">
                                     <label>Costo Promedio:</label>
-                                    <input type="text" class="form-control" disabled />
+                                    <input id="costoP" type="text" class="form-control" disabled />
+                                    <div id="errCostoP" class="invalid-feedback"></div>
                                 </div>
                                 <div class="form-group">
                                     <label>Precio de venta:</label>
-                                    <input type="text" class="form-control" />
+                                    <input id="precioV" type="text" class="form-control" />
+                                    <div id="errPrecioV" class="invalid-feedback"></div>
                                 </div>
                                 <div class="form-group">
                                     <label>Precio de mayoreo:</label>
-                                    <input type="text" class="form-control" />
+                                    <input id="precioM" type="text" class="form-control" />
+                                    <div id="errPrecioM" class="invalid-feedback"></div>
                                 </div>
                                 <div class="form-group">
                                     <label>Punto de reorden</label>
-                                    <input type="text" class="form-control" />
+                                    <input id="puntoR" type="text" class="form-control" />
+                                    <div id="errPuntoR" class="invalid-feedback"></div>
                                 </div>
                             </form>
                         </div>
@@ -268,46 +286,32 @@
                             <div class="mt-3">
                                 <div class="form-group">
                                     <label>Categorias</label>
-                                    <input list="cat" class="form-control" />
+                                    <input id="catSel" list="cat" class="form-control" />
                                     <datalist id="cat">
-                                        <option value="Chrome">
-                                        <option value="Firefox">
-                                        <option value="Internet Explorer">
-                                        <option value="Opera">
-                                        <option value="Safari">
-                                        <option value="Microsoft Edge">
                                     </datalist>
-                                    <div>
-                                        <label class="h4 mr-1 ml-1 mb-1 mt-1">
-                                            <span class="badge badge-secondary">Cat_1
-                                                <img src='../../img/tacha.png' style="height:25px;cursor:pointer;"
-                                                    name="quitarMat" id="mat_${i}">
-                                            </span>
-                                        </label>
+                                    <div id="cats">
                                     </div>
                                 </div>
                             </div>
                             <div class="mt-3">
+                                <div id="alertaProvedd"></div>
                                 <div class="h3 text-center">Datos del proveedor</div>
-                                <label>ID del Proveedor</label>
-                                <input list="prov" class="form-control" />
+                                <label>Id - nombre del Proveedor</label>
+                                <input id="provSel" list="prov" class="form-control" />
+                                <div id="errIdProv" class="invalid-feedback"></div>
                                 <datalist id="prov">
-                                    <option value="Chrome">
-                                    <option value="Firefox">
-                                    <option value="Internet Explorer">
-                                    <option value="Opera">
-                                    <option value="Safari">
-                                    <option value="Microsoft Edge">
                                 </datalist>
+                                <div id="datosP" class="container"></div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
+                    <div id="alertaRegistro"></div>
                     <button class="btn btn-secondary" type="button" data-dismiss="modal" aria-label="close">
                         Cerrar
                     </button>
-                    <button id="psv" class="btn btn-primary" type="button" aria-label="close">
+                    <button id="SalvarArt" class="btn btn-primary" type="button" aria-label="close">
                         <i class="fas fa-save"></i> Guardar
                     </button>
                 </div>

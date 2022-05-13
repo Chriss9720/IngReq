@@ -188,6 +188,44 @@ const validarId = Joi.object({
     })
 });
 
+const validarPrecio = Joi.object({
+    precio: Joi.string().pattern(/^\d+(\.\d+)*$/).required().error(errores => {
+        errores.forEach(e => {
+            switch (e.code) {
+                case 'string.empty':
+                    e.message = "Ingrese un valor";
+                    break;
+                case 'string.pattern.name':
+                case "string.pattern.base":
+                case "string.pattern.invert.name":
+                case "string.pattern.invert.base":
+                    e.message = "valores numericos enteros o reales";
+                    break;
+            }
+        });
+        return errores;
+    })
+});
+
+const validarEnteros = Joi.object({
+    entero: Joi.string().pattern(/^\d+$/).required().error(errores => {
+        errores.forEach(e => {
+            switch (e.code) {
+                case 'string.empty':
+                    e.message = "Ingrese un valor";
+                    break;
+                case 'string.pattern.name':
+                case "string.pattern.base":
+                case "string.pattern.invert.name":
+                case "string.pattern.invert.base":
+                    e.message = "valores numericos enteros";
+                    break;
+            }
+        });
+        return errores;
+    })
+});
+
 const validar = (data, campo, joi, body, id = undefined) => {
     let { error } = joi.validate(body);
     if (error) data[campo] = {
@@ -263,6 +301,40 @@ ruta.post('/existeCategorias', auth, (req, res) => {
         .catch(c => {
             res.status(404).json({ msg: "No hay categorias registradas" });
         });
+});
+
+ruta.post('/articulo', auth, (req, res) => {
+    let errores = {};
+    let {
+        id,
+        diasC,
+        nombre,
+        cantidad,
+        unidadesC,
+        unidadesV,
+        costo,
+        costoP,
+        precioV,
+        precioM,
+        puntoR,
+        prov,
+        cat
+    } = req.body;
+
+    errores = validar(errores, "errId", validarId, { id });
+    errores = validar(errores, "errDiasC", validarEnteros, { entero: diasC }, 'diasC');
+    errores = validar(errores, "errNombre", validarNombre, { nombre });
+    errores = validar(errores, "errCantidad", validarEnteros, { entero: cantidad }, 'cantidad');
+    errores = validar(errores, "errUnidadesC", validarEnteros, { entero: unidadesC }, 'unidadesC');
+    errores = validar(errores, "errUnidadesV", validarEnteros, { entero: unidadesV }, 'unidadesV');
+    errores = validar(errores, "errCosto", validarPrecio, { precio: costo }, 'costo');
+    errores = validar(errores, "errCostoP", validarPrecio, { precio: costoP }, 'costoP');
+    errores = validar(errores, "errPrecioV", validarPrecio, { precio: precioV }, 'precioV');
+    errores = validar(errores, "errPrecioM", validarPrecio, { precio: precioM }, 'precioM');
+    errores = validar(errores, "errPuntoR", validarEnteros, { entero: puntoR }, 'puntoR');
+    errores = validar(errores, "errIdProv", validarId, { id: (prov || "") }, 'provSel');
+
+    res.json(errores);
 });
 
 module.exports = ruta;
