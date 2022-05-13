@@ -4,6 +4,7 @@ $(document).ready(() => {
     let cat = [];
     let idP;
     let datos = [];
+    let idA;
 
     const mostrarAlerta = (msg, tipo, id, show = true) => {
         $(`#${id}`).html((show) ? `
@@ -29,8 +30,11 @@ $(document).ready(() => {
     };
 
     $("#registrarArt").click(() => {
+        $("#accionSal").attr("hidden", false);
+        $("#accionMod").attr('hidden', true);
         validarProveedores()
             .then(v => {
+                reset();
                 $("#modal").modal();
                 mostrarAlerta('', '', 'alertaRegistro', false);
                 mostrarAlerta('', '', 'alertaP', false);
@@ -189,9 +193,10 @@ $(document).ready(() => {
             let find = cat.find(c => c.c == k.target.value);
             if (!find) {
                 cat.push({ c: k.target.value, act: true, pos: cat.length });
-                armarCat();
             }
+            find.act = true;
             k.target.value = "";
+            armarCat();
         }
     });
 
@@ -302,7 +307,7 @@ $(document).ready(() => {
                 }
             }).catch(e => {
                 console.log(e);
-            })
+            });
     });
 
     $("#calCost").click(() => {
@@ -341,6 +346,20 @@ $(document).ready(() => {
         });
         idP = undefined;
         cat = [];
+        $("#foto_pro")[0].src = `../img/none.jpg`;
+        $("#id").attr("disabled", false);
+        $("#diasC").attr("disabled", false);
+        $("#nombre").attr("disabled", false);
+        $("#cantidad").attr("disabled", false);
+        $("#unidadesC").attr("disabled", false);
+        $("#unidadesV").attr("disabled", false);
+        $("#costo").attr("disabled", false);
+        $("#precioV").attr("disabled", false);
+        $("#precioM").attr("disabled", false);
+        $("#puntoR").attr("disabled", false);
+        $("#foto").attr("disabled", false);
+        $("#catSel").attr("disabled", false);
+        $("#provSel").attr("disabled", false);
         cargarCategorias();
     };
 
@@ -355,7 +374,6 @@ $(document).ready(() => {
             });
         });
     };
-
 
     const evento = (evt, max) => {
         if (evt.target.nodeName == 'A' && !evt.target.children[0]) {
@@ -456,16 +474,14 @@ $(document).ready(() => {
                             <div class="col-sm-4 col-md-3 text-white dato">
                                 <label class="mt-2 mb-2">
                                     <div class="btn-group" role="group">
-                                        <button type="button" class="btn btn-primary text-white mr-2"
-                                            name="modificar_1" title="Ver">
+                                        <button type="button" class="btn btn-primary text-white mr-2" name="ver" id="ver_${i}" title="Ver">
                                             <i class="fas fa-eye"></i>
                                         </button>
                                     </div>
                                 </label>
                                 <label class="mt-2 mb-2">
                                     <div class="btn-group" role="group">
-                                        <button type="button" class="btn btn-success text-white mr-2"
-                                            name="modificar_1" title="Editar">
+                                        <button type="button" class="btn btn-success text-white mr-2" name="editar" id="editar_${i}" title="Editar">
                                             <i class="fas fa-edit"></i>
                                         </button>
                                     </div>
@@ -480,6 +496,8 @@ $(document).ready(() => {
         }
         pie(pagina, max);
         $("[name='ver']").click(evt => {
+            $("#accionSal").attr("hidden", true);
+            $("#accionMod").attr('hidden', true);
             reset();
             let pos;
             if (evt.target.nodeName == 'BUTTON') {
@@ -488,9 +506,10 @@ $(document).ready(() => {
                 pos = evt.delegateTarget.attributes.id.value.split("_")[1];
             }
             verEditar(datos[pos].idP);
-            mostrarAlerta('', '', false);
         });
         $("[name='editar']").click(evt => {
+            $("#accionSal").attr("hidden", true);
+            $("#accionMod").attr('hidden', false);
             reset();
             let pos;
             if (evt.target.nodeName == 'BUTTON') {
@@ -499,11 +518,37 @@ $(document).ready(() => {
                 pos = evt.delegateTarget.attributes.id.value.split("_")[1];
             }
             verEditar(datos[pos].idP, false);
-            $("#accionAct").attr('hidden', false);
-            $("#accionSalvar").attr('hidden', true);
-            $("#accionDel").attr('hidden', true);
-            mostrarAlerta('', '', false);
         });
+    };
+
+    const verEditar = (datos, ver = true) => {
+        mostrarAlerta('', '', 'alertaRegistro', false);
+        $("#foto_pro")[0].src = `../img/${datos.img}`;
+        idA = datos.id;
+        $("#id").val(datos.id).attr("disabled", ver);
+        $("#diasC").val(datos.diasC).attr("disabled", ver);
+        $("#nombre").val(datos.nombre).attr("disabled", ver);
+        $("#cantidad").val(datos.cantidad).attr("disabled", ver);
+        $("#unidadesC").val(datos.unidadesC).attr("disabled", ver);
+        $("#unidadesV").val(datos.unidadesV).attr("disabled", ver);
+        $("#costo").val(datos.costo).attr("disabled", ver);
+        $("#costoP").val(datos.costoP);
+        $("#precioV").val(datos.precioV).attr("disabled", ver);
+        $("#precioM").val(datos.precioM).attr("disabled", ver);
+        $("#puntoR").val(datos.puntoR).attr("disabled", ver);
+        $("#foto").attr("disabled", ver);
+        $("#catSel").attr("disabled", ver);
+        $("#provSel").val(`${datos.proveedores[0].idP.id} - ${datos.proveedores[0].idP.nombre}`).attr("disabled", ver);
+        cargarDatosP(datos.proveedores[0].idP);
+        for (let i = 0; i < datos.categorias.length; i++) {
+            cat.push({
+                c: datos.categorias[i].cat.nombre,
+                act: true,
+                pos: i
+            });
+        }
+        armarCat();
+        $("#modal").modal();
     };
 
     const load = () => {
@@ -516,6 +561,88 @@ $(document).ready(() => {
                 console.log(e);
             })
     };
+
+    const actualizarArt = data => {
+        return new Promise((resolve, reject) => {
+            $.ajax({
+                url: '/actualizar/articulo',
+                type: "put",
+                data: data,
+                datatype: 'json',
+                success: s => resolve(s),
+                error: e => reject(e)
+            });
+        });
+    };
+
+    $("#MoficarArt").click(async() => {
+        let foto = $("#foto")[0].files[0];
+        let formData = new FormData();
+        if (foto) {
+            formData.append('file', foto);
+            await subirImg(formData)
+                .then(t => {
+                    foto = t.name;
+                })
+                .catch(c => {
+                    console.log(c);
+                    foto = 'none.jpg';
+                });
+        } else {
+            foto = 'none.jpg';
+        }
+        let data = {
+            img: foto,
+            id: getValue('id'),
+            diasC: getValue('diasC'),
+            nombre: getValue('nombre'),
+            cantidad: getValue('cantidad'),
+            unidadesC: getValue('unidadesC'),
+            unidadesV: getValue('unidadesV'),
+            costo: getValue('costo'),
+            costoP: getValue('costoP'),
+            precioV: getValue('precioV'),
+            precioM: getValue('precioM'),
+            puntoR: getValue('puntoR'),
+            prov: idP,
+            cat: cat.filter(c => c.act),
+            idA: idA
+        };
+        validarDatos(data)
+            .then(v => {
+                let valid = true;
+                console.log(v);
+                Object.keys(v).forEach(k => {
+                    let campo = $(`#${v[k].id}`)[0];
+                    valid = valid && !v[k].s;
+                    if (v[k].s) {
+                        if (campo.className.includes("is-valid")) {
+                            campo.className = campo.className.replace(" is-valid", " is-invalid");
+                        } else if (!campo.className.includes("is-invalid")) {
+                            campo.className += " is-invalid";
+                        }
+                        $(`#${k}`).html(v[k].msg);
+                    } else {
+                        if (campo.className.includes("is-invalid")) {
+                            campo.className = campo.className.replace(" is-invalid", " is-valid");
+                        } else if (!campo.className.includes("is-valid")) {
+                            campo.className += " is-valid";
+                        }
+                    }
+                });
+                if (valid) {
+                    actualizarArt(data)
+                        .then(up => {
+                            console.log(up);
+                        })
+                        .catch(e => {
+                            console.log(e);
+                        });
+                }
+            }).catch(e => {
+                console.log(e);
+            });
+    });
 
     load();
 

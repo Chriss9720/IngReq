@@ -32,13 +32,16 @@ ruta.post('/misProductos', auth, async(req, res) => {
             path: 'productos.idP',
             model: 'Articulo',
             select: { _id: 0, __v: 0 },
-            populate: {
+            populate: [{
                 path: 'proveedores.idP',
                 model: 'Proveedores',
                 select: { _id: 0, __v: 0 }
-            }
-        })
-        .select("idP");
+            }, {
+                path: 'categorias.cat',
+                model: 'Categorias',
+                select: { _id: 0, __v: 0 }
+            }]
+        }).select("idP");
     res.json(lista.productos || []);
 });
 

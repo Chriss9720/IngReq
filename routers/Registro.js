@@ -9,12 +9,12 @@ const Proveedor = require('../models/Proveedores');
 const Articulo = require('../models/Articulo');
 const Categorias = require('../models/Categorias');
 
+const MetodCat = require('../methods/Categorias');
+
 ruta.post('/Usuario', (req, res) => {
     registrarUsuario(req.body)
         .then(
-            x => {
-                res.json({ msj: "Registro Exitoso" });
-            }
+            x => res.json({ msj: "Registro Exitoso" })
         )
         .catch(
             err => {
@@ -101,8 +101,7 @@ ruta.post('/articulo', auth, (req, res) => {
             id,
             diasC,
             nombre,
-            cantidad,
-            unidadesC,
+            cantidad: (cantidad + unidadesC),
             unidadesV,
             costo,
             costoP,
@@ -115,7 +114,7 @@ ruta.post('/articulo', auth, (req, res) => {
                 .then(l => {
                     ligarArticuloUsuario(art._id, req.data._id)
                         .then(lU => {
-                            if (cat) validarCategorias(art._id, cat, req.data._id);
+                            if (cat) MetodCat.validarCategorias(art._id, cat, req.data._id);
                             res.json(art._id);
                         })
                         .catch(err => {
@@ -167,88 +166,6 @@ const ligarProductoProveedor = async(idA, idP) => {
         }
     }, { new: true });
     return actualizar;
-};
-
-const validarCategorias = async(idA, cat, idU) => {
-    let userData = await Usuario.findById({ _id: idU })
-        .populate({
-            path: 'categorias.cat',
-            model: 'Categorias',
-            select: { __v: 0 }
-        });
-    let catUser = [];
-    userData.categorias.forEach(uC => catUser.push({ nombre: uC.cat.nombre, _id: uC.cat._id }));
-    cat.forEach(c => {
-        let find = catUser.find(f => f.nombre == c.c);
-        if (find) {
-            siExisteCat(find._id, idA)
-        } else {
-            noExisteCat(c.c, idU, idA);
-        }
-    });
-};
-
-const noExisteCat = (nombreC, idU, idA) => {
-    crearCategoria(nombreC)
-        .then(idCat => {
-            ligarCategoriasUser(idU, idCat._id)
-                .then(lu => {
-                    ligarCategoriasProd(idA, idCat._id)
-                        .then(lp => {
-                            console.log("todo ok");
-                        })
-                        .catch(err => {
-                            console.log(err);
-                        });
-                })
-                .catch(err => {
-                    console.log(err);
-                });
-        })
-        .catch(err => {
-            console.log(err);
-        });
-};
-
-const siExisteCat = (idCat, idA) => {
-    ligarCategoriasProd(idA, idCat)
-        .then(lp => {
-            console.log("todo ok");
-        })
-        .catch(err => {
-            console.log(err);
-        });
-};
-
-const ligarCategoriasUser = async(idU, idC) => {
-    let actualizar = await Usuario.findByIdAndUpdate(idU, {
-        $addToSet: {
-            categorias: {
-                $each: [{
-                    cat: idC
-                }]
-            }
-        }
-    }, { new: true });
-    return actualizar;
-};
-
-const ligarCategoriasProd = async(idA, idC) => {
-    let actualizar = await Categorias.findByIdAndUpdate(idC, {
-        $addToSet: {
-            articulos: {
-                $each: [{
-                    idA: idA
-                }]
-            }
-        }
-    }, { new: true });
-    return actualizar;
-};
-
-const crearCategoria = async(nombre) => {
-    let Schema = new Categorias({ nombre });
-    return await Schema.save();
 };
 
 module.exports = ruta;

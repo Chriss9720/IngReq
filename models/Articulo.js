@@ -7,7 +7,6 @@ const Articulo = new Schema({
     "diasC": { type: Number, required: true, default: 0 },
     "nombre": { type: String, required: true },
     "cantidad": { type: Number, default: 0 },
-    "unidadesC": { type: Number },
     "unidadesV": { type: Number },
     "costo": { type: String, required: true },
     "costoP": { type: String, default: 0 },
@@ -18,6 +17,12 @@ const Articulo = new Schema({
         idP: {
             type: Schema.Types.ObjectId,
             ref: "Proveedores"
+        }
+    }],
+    "categorias": [{
+        cat: {
+            type: Schema.Types.ObjectId,
+            ref: 'Categorias'
         }
     }]
 });
