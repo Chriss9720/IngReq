@@ -21,7 +21,7 @@ $(document).ready(() => {
                 campo.className = campo.className.replace(" is-invalid", "");
             }
             campo.value = "";
-        })
+        });
         load();
     };
 

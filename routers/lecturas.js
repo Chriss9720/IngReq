@@ -26,4 +26,20 @@ ruta.post('/categorias', auth, async(req, res) => {
     res.json(lista.categorias || []);
 });
 
+ruta.post('/misProductos', auth, async(req, res) => {
+    let lista = await Usuario.findById(req.data._id)
+        .populate({
+            path: 'productos.idP',
+            model: 'Articulo',
+            select: { _id: 0, __v: 0 },
+            populate: {
+                path: 'proveedores.idP',
+                model: 'Proveedores',
+                select: { _id: 0, __v: 0 }
+            }
+        })
+        .select("idP");
+    res.json(lista.productos || []);
+});
+
 module.exports = ruta;

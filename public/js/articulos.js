@@ -3,6 +3,7 @@ $(document).ready(() => {
     let proveedores = [];
     let cat = [];
     let idP;
+    let datos = [];
 
     const mostrarAlerta = (msg, tipo, id, show = true) => {
         $(`#${id}`).html((show) ? `
@@ -31,6 +32,7 @@ $(document).ready(() => {
         validarProveedores()
             .then(v => {
                 $("#modal").modal();
+                mostrarAlerta('', '', 'alertaRegistro', false);
                 mostrarAlerta('', '', 'alertaP', false);
             })
             .catch(e => {
@@ -48,13 +50,6 @@ $(document).ready(() => {
             reader.readAsDataURL(archivo);
             reader.onloadend = () => img.src = reader.result;
         }
-    });
-
-    $('#modal').on('hidden.bs.modal', () => {
-        let img = $("#foto_pro")[0];
-        let nombre = $("#nombreFoto")[0];
-        img.src = "../../img/none.jpg";
-        nombre.innerText = "Seleccione la foto";
     });
 
     const leerProv = () => {
@@ -103,7 +98,6 @@ $(document).ready(() => {
     const cargarCategorias = () => {
         leerCategorias()
             .then(cat => {
-                console.log(cat);
                 let html = "";
                 cat.forEach(l => {
                     html += `<option value="${l.cat.nombre}">`;
@@ -242,7 +236,6 @@ $(document).ready(() => {
     };
 
     $("#SalvarArt").click(async() => {
-        mostrarAlerta('', '', 'alertaRegistro', false);
         let foto = $("#foto")[0].files[0];
         let formData = new FormData();
         if (foto) {
@@ -300,7 +293,7 @@ $(document).ready(() => {
                     registrarArt(data)
                         .then(rg => {
                             mostrarAlerta('Registro exitoso', 'success', 'alertaRegistro');
-                            cargarCategorias();
+                            reset();
                         })
                         .catch(e => {
                             mostrarAlerta(e.responseJSON.msg, 'danger', 'alertaRegistro');
@@ -321,5 +314,209 @@ $(document).ready(() => {
     });
 
     const getValue = id => $(`#${id}`).val();
+
+    const reset = () => {
+        [
+            'id', 'diasC', 'nombre', 'cantidad', 'unidadesC',
+            'unidadesV', 'costo', 'costoP', 'precioV', 'precioM',
+            'puntoR', 'provSel'
+        ].forEach(k => {
+            let campo = $(`#${k}`)[0];
+            if (campo.className.includes("is-valid")) {
+                campo.className = campo.className.replace(" is-valid", "");
+            } else if (campo.className.includes("is-invalid")) {
+                campo.className = campo.className.replace(" is-invalid", "");
+            }
+            campo.value = "";
+        });
+        $("#nombreFoto").val("");
+        $("#foto_pro")[0].src = "../img/none.jpg";
+        cargarDatosP({
+            id: '',
+            correo: '',
+            RFC: '',
+            direccion: '',
+            telefono: '',
+            cp: ''
+        });
+        idP = undefined;
+        cat = [];
+        cargarCategorias();
+    };
+
+    const leer = () => {
+        return new Promise((resolve, reject) => {
+            $.ajax({
+                url: '/leer/misProductos',
+                type: 'POST',
+                dataType: 'json',
+                success: s => resolve(s),
+                error: r => reject(e)
+            });
+        });
+    };
+
+
+    const evento = (evt, max) => {
+        if (evt.target.nodeName == 'A' && !evt.target.children[0]) {
+            return parseInt(evt.target.innerHTML);
+        } else {
+            let name = (evt.target.nodeName == 'A') ? evt.target.children[0].attributes.name.value : evt.target.attributes.name.value;
+            return (name == 'Final') ? parseInt(max) : 1;
+        }
+    };
+
+    const contenido = (pagina, i) => `
+        <li class="page-item ${pagina == i ? 'active' : ''}">
+            <a name="pagina" class="page-link click bg-input text-input ml-2 form-control text-center">${i}</a>
+        </li>`;
+
+    const pie = (pagina, max) => {
+        let cuerpo = `
+        <ul class="pagination justify-content-center">
+            <li class="page-item ${pagina == 1 ? "disabled" : "click"}">
+                <a name="pagina" class="page-link" aria-label="Previous">
+                    <span name='Inicio' aria-hidden="true">&laquo;</span>
+                </a>
+            </li>`;
+        let entro = max > 0;
+        if (max <= 5) {
+            for (let i = 1; i <= max; i++) cuerpo += contenido(pagina, i);
+        } else {
+            if (pagina == max) {
+                for (let i = max - 4; i <= max; i++) cuerpo += contenido(pagina, i);
+            } else if ((pagina + 4) <= max) {
+                if ((pagina - 2) <= 1) {
+                    for (let i = 1; i <= 5; i++) cuerpo += contenido(pagina, i);
+                } else if ((pagina + 2) == max) {
+                    for (let i = pagina; i <= (pagina + 4); i++) cuerpo += contenido(pagina, i);
+                } else {
+                    for (let i = pagina - 3; i < (pagina + 2); i++) cuerpo += contenido(pagina, i);
+                }
+            } else {
+                for (let i = pagina - 3; i < (pagina + 2); i++) cuerpo += contenido(pagina, i);
+            }
+        }
+        cuerpo += `
+            <li class="page-item ${pagina == max ? "disabled" : "click"} ml-3">
+                <a name="pagina" class="page-link" aria-label="Next">
+                    <span name='Final' aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        </ul>`;
+
+        if (entro) $("#pie")[0].innerHTML = cuerpo;
+
+        $(`a[name="pagina"]`).click(evt => cargar(evento(evt, max)));
+
+    };
+
+    const cargar = (pagina) => {
+        let contenido = $("#datos")[0];
+        let mostrar = 5;
+        let max = Math.ceil(datos.length / mostrar);
+        let total = mostrar * pagina;
+        let inicio = (pagina - 1) * mostrar;
+        contenido.innerHTML = "";
+        for (let i = inicio; i < total && i < datos.length; i++) {
+            try {
+                let data = datos[i].idP;
+                contenido.innerHTML += `
+                    <nav class="navbar navbar-expand-sm ml-1 mr-1 nav">
+                        <button class="navbar-toggler border-danger bg-dark mx-auto mb-2 mt-2 " type="button" data-toggle="collapse" data-target="#datoEjemplo" aria-controls="datoEjemplo" aria-expanded="datoEjemplo" aria-label="Toggle navigation">
+                            <label for="#" class="text-white">CLICK ME <i class="fas fa-caret-down"></i></label>
+                        </button>
+                        <!-- Dato 1 -->
+                        <div class="row data text-center collapse navbar-collapse bg-white" id="datoEjemplo">
+                            <div class="col-sm-1 col-md-1 text-white bg-dark dato">
+                                <label for="#" class="mt-2 mb-2">
+                                    ${data.id}
+                                </label>
+                            </div>
+                            <div class="col-sm-3 col-md-2 dato">
+                                <label class="mt-2 mb-2">
+                                    ${data.nombre}
+                                </label>
+                            </div>
+                            <div class="col-sm-2 col-md-2 text-white bg-dark dato">
+                                <label class="mt-2 mb-2">
+                                    ${data.cantidad}
+                                </label>
+                            </div>
+                            <div class="col-sm-2 col-md-2 dato">
+                                <label class="mt-2 mb-2">
+                                    ${data.precioV}
+                                </label>
+                            </div>
+                            <div class="col-sm-2 col-md-2 text-white bg-dark dato">
+                                <label class="mt-2 mb-2">
+                                    ${data.precioM}
+                                </label>
+                            </div>
+                            <div class="col-sm-4 col-md-3 text-white dato">
+                                <label class="mt-2 mb-2">
+                                    <div class="btn-group" role="group">
+                                        <button type="button" class="btn btn-primary text-white mr-2"
+                                            name="modificar_1" title="Ver">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                    </div>
+                                </label>
+                                <label class="mt-2 mb-2">
+                                    <div class="btn-group" role="group">
+                                        <button type="button" class="btn btn-success text-white mr-2"
+                                            name="modificar_1" title="Editar">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                    </nav>
+                `;
+            } catch (e) {
+                console.log(e)
+            }
+        }
+        pie(pagina, max);
+        $("[name='ver']").click(evt => {
+            reset();
+            let pos;
+            if (evt.target.nodeName == 'BUTTON') {
+                pos = evt.target.attributes.id.value.split("_")[1];
+            } else {
+                pos = evt.delegateTarget.attributes.id.value.split("_")[1];
+            }
+            verEditar(datos[pos].idP);
+            mostrarAlerta('', '', false);
+        });
+        $("[name='editar']").click(evt => {
+            reset();
+            let pos;
+            if (evt.target.nodeName == 'BUTTON') {
+                pos = evt.target.attributes.id.value.split("_")[1];
+            } else {
+                pos = evt.delegateTarget.attributes.id.value.split("_")[1];
+            }
+            verEditar(datos[pos].idP, false);
+            $("#accionAct").attr('hidden', false);
+            $("#accionSalvar").attr('hidden', true);
+            $("#accionDel").attr('hidden', true);
+            mostrarAlerta('', '', false);
+        });
+    };
+
+    const load = () => {
+        leer()
+            .then(lect => {
+                datos = lect;
+                cargar(1);
+            })
+            .catch(e => {
+                console.log(e);
+            })
+    };
+
+    load();
 
 });
