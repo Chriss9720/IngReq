@@ -22,7 +22,7 @@ ruta.get('/', index, (req, res) => cargar('index', res));
 
 ruta.get('/Registro', (req, res) => cargar('Registro', res));
 
-ruta.post('/inicio', (req, res) => cargar('inicio', res));
+ruta.post('/inicio', (req, res) => cargar('usuario/InicioUsuario', res));
 
 ruta.post('/Administrar', auth, (req, res) => cargar('vendedor/Vendedor', res));
 

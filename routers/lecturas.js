@@ -1,8 +1,10 @@
 const express = require('express');
-const Usuario = require('../models/Usuarios');
-const Proveedor = require('../models/Proveedores');
 const auth = require('../middlewares/auth');
 const ruta = express.Router();
+
+const Usuario = require('../models/Usuarios');
+const Proveedor = require('../models/Proveedores');
+const Articulos = require('../models/Articulo');
 
 ruta.post('/proveedores', auth, async(req, res) => {
     let lista = await Usuario.findById(req.data._id)
@@ -58,6 +60,11 @@ ruta.post('/cupones', auth, async(req, res) => {
             }
         }).select("idC");
     res.json(lista.cupones || [])
+});
+
+ruta.post('/articulos', auth, async(req, res) => {
+    let lista = await Articulos.find().select("nombre precioV id cantidad img");
+    res.json(lista || []);
 });
 
 module.exports = ruta;

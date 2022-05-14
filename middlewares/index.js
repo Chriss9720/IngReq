@@ -28,7 +28,7 @@ let verificarToken = (req, res, next) => {
     }
     jwt.verify(token, config.get("ConfigTk.SEED"), (err, datos) => {
         if (!err) {
-            return cargar('inicio', res);
+            return cargar('usuario/InicioUsuario', res);
         } else {
             next();
         }

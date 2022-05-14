@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Tienda en linea</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+        .imagen {
+            width: 100%;
+            z-index: 1;
+            position: absolute;
+        }
+
+        .inicio {
+            padding: 3%;
+            width: 50%;
+            text-align: center;
+            z-index: 2;
+            position: absolute;
+        }
+        .buscador{
+            padding: 3%;
+            width: 80%;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="p-1 bg-dark text-white text-center">
+        <h2> <img src="./img/icono.png" class="rounded-circle" alt="Cinque Terre" width="54" height="54"> Tienda en linea
+        </h2>
+    </div>
+    <nav class="navbar navbar-expand bg-secondary navbar-dark">
+        <div class="menu">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link active" href="InicioUsuario.html">Inicio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="servicios.html">Carrito </a> 
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="buscador"> 
+        <input type="text" size="100%" placeholder="Buscar producto"  id="buscador" size="10"> <img src="./img/lupa.png" width="50" height="50"> </input>
+        <div class="dropdown">
+            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Categorias
+                <span class="caret"></span></button>
+            <ul class="dropdown-menu">
+                <li><a href="#">Ropa</a></li>
+                <li><a href="#">Electronica</a></li>
+                <li><a href="#">Hogar</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="container mt-1">
+        <div class="row border">
+            <div class="col-sm-4">
+                <img src="./img/mause.jpg" width="300" height="200" onclick="location.href='producto.html'">
+            </div>
+            <div class="col-sm-8">
+                <h5 onclick="location.href='producto.html'">Free wolf X13 Mouse Inalámbrico Gamer, Ratón Inalámbrico Recargable Luz RGB, 7 Botone y 3 DPI
+                    Ajustable, Clic Silencioso, Reposo Automático, Preciso, Rápido, Ergonómico, para Video Juegos o
+                    en Oficina</h5>
+                <h5>$ 259 </h5><br>
+                <button class="btn btn-dark"  onclick="location.href='comprar.html'" align="center">Comprar producto</button> 
+                <button class="btn btn-dark"  onclick="location.href='carrito.html'" align="center">Añadir al carrito</button>
+            </div>
+        </div>
+    </div>
+    <div class="container mt-1">
+        <div class="row border">
+            <div class="col-sm-4">
+                <img src="./img/teclado.jpg" width="300" height="200" onclick="location.href='producto.html'">
+            </div>
+            <div class="col-sm-8">
+                <h5>Free wolf X13 Mouse Inalámbrico Gamer, Ratón Inalámbrico Recargable Luz RGB, 7 Botone y 3 DPI
+                    Ajustable, Clic Silencioso, Reposo Automático, Preciso, Rápido, Ergonómico, para Video Juegos o
+                    en Oficina</h5>
+                <h5>$ 259 </h5><br>
+                <button class="btn btn-dark"  onclick="location.href='comprar.html'" align="center">Comprar producto</button> 
+                <button class="btn btn-dark"  onclick="location.href='carrito.html'" align="center">Añadir al carrito</button>
+            </div>
+        </div>
+    </div>
+    
+
+</body>
+
+</html>

@@ -1,0 +1,27 @@
+.imagen {
+    width: 100%;
+    z-index: 1;
+    position: absolute;
+}
+
+.inicio {
+    padding: 3%;
+    width: 50%;
+    text-align: center;
+    z-index: 2;
+    position: absolute;
+}
+
+.buscador {
+    padding: 3%;
+    width: 80%;
+}
+
+.sin {
+    background: transparent;
+    border: none;
+}
+
+.click {
+    cursor: pointer;
+}
