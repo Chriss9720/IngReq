@@ -1,5 +1,16 @@
 $(document).ready(() => {
 
+    const mostrar = (tipo, msg, show = true) => {
+        $("#alerta").html((show) ? `
+            <div class="alert alert-${tipo} alert-dismissible fade show text-center" role="alert">
+                <strong>${msg}</strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        ` : '');
+    }
+
     const pagar = () => {
         return new Promise((resolve, reject) => {
             $.ajax({
@@ -26,6 +37,7 @@ $(document).ready(() => {
     };
 
     $("#pagar").click(() => {
+        mostrar('', '', false);
         let data = {
             tarjeta_1: $("#tarjeta_1").val(),
             tarjeta_2: $("#tarjeta_2").val(),
@@ -56,8 +68,8 @@ $(document).ready(() => {
                 });
                 if (valid) {
                     pagar()
-                        .then(p => console.log(p))
-                        .catch(e => console.log(e));
+                        .then(p => mostrar('success', 'Carrito comprado exitosamente'))
+                        .catch(e => mostrar('danger', 'Ocurrio un error al realizar el pago'));
                 }
             })
             .catch(e => console.log(e));

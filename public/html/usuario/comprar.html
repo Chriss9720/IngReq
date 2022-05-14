@@ -29,33 +29,32 @@
         <h1>Pagar el carrito</h1>
         <div class="container">
             <h2>Ingrese la siguiente información</h2>
-            <form class="form-horizontal" action="comprar.html">
-                <div class="form-group">
-                    <label class="control-label col-sm-2">Tarjeta:</label>
-                    <div class="d-flex justify-content-start align-items-center">
-                        <input type="password" class="form-control tarjeta" id="tarjeta_1" placeholder="####">-
-                        <div class="invalid-feedback" id="err1"></div>
-                        <input type="password" class="form-control tarjeta" id="tarjeta_2" placeholder="####">-
-                        <div class="invalid-feedback" id="err2"></div>
-                        <input type="password" class="form-control tarjeta" id="tarjeta_3" placeholder="####">-
-                        <div class="invalid-feedback" id="err3"></div>
-                        <input type="password" class="form-control tarjeta" id="tarjeta_4" placeholder="####">
-                        <div class="invalid-feedback" id="err4"></div>
-                    </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2">Tarjeta:</label>
+                <div class="d-flex justify-content-start align-items-center">
+                    <input type="password" class="form-control tarjeta" id="tarjeta_1" placeholder="####">-
+                    <div class="invalid-feedback" id="err1"></div>
+                    <input type="password" class="form-control tarjeta" id="tarjeta_2" placeholder="####">-
+                    <div class="invalid-feedback" id="err2"></div>
+                    <input type="password" class="form-control tarjeta" id="tarjeta_3" placeholder="####">-
+                    <div class="invalid-feedback" id="err3"></div>
+                    <input type="password" class="form-control tarjeta" id="tarjeta_4" placeholder="####">
+                    <div class="invalid-feedback" id="err4"></div>
                 </div>
-                <div class="form-group">
-                    <label class="control-label col-sm-2">Código de seguridad</label>
-                    <div class="col-12">
-                        <input type="password" class="form-control tarjeta" id="codigo" placeholder="####">
-                        <div class="invalid-feedback" id="err5"></div>
-                    </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2">Código de seguridad</label>
+                <div class="col-12">
+                    <input type="password" class="form-control tarjeta" id="codigo" placeholder="####">
+                    <div class="invalid-feedback" id="err5"></div>
                 </div>
-                <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
-                        <input id="pagar" type="button" value="Pagar" class="btn btn-dark">
-                    </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <input id="pagar" type="button" value="Pagar" class="btn btn-dark">
                 </div>
-            </form>
+            </div>
+            <div id="alerta"></div>
         </div>
     </div>
     <!-- Optional JavaScript -->
