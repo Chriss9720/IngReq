@@ -229,7 +229,7 @@ $(document).ready(() => {
     const subirImg = data => {
         return new Promise((resolve, reject) => {
             $.ajax({
-                url: '/multimedia/subir/img',
+                url: '/multimedia/subir/img/art',
                 data: data,
                 type: 'post',
                 contentType: false,
@@ -240,24 +240,11 @@ $(document).ready(() => {
         });
     };
 
-    $("#SalvarArt").click(async() => {
+    $("#SalvarArt").click(() => {
         let foto = $("#foto")[0].files[0];
         let formData = new FormData();
-        if (foto) {
-            formData.append('file', foto);
-            await subirImg(formData)
-                .then(t => {
-                    foto = t.name;
-                })
-                .catch(c => {
-                    console.log(c);
-                    foto = 'none.jpg';
-                });
-        } else {
-            foto = 'none.jpg';
-        }
         let data = {
-            img: foto,
+            img: 'none.jpg',
             id: getValue('id'),
             diasC: getValue('diasC'),
             nombre: getValue('nombre'),
@@ -296,9 +283,17 @@ $(document).ready(() => {
                 });
                 if (valid) {
                     registrarArt(data)
-                        .then(rg => {
+                        .then(async(rg) => {
                             mostrarAlerta('Registro exitoso', 'success', 'alertaRegistro');
+                            if (foto) {
+                                formData.append('file', foto);
+                                formData.append('name', new File([], rg.id));
+                                await subirImg(formData)
+                                    .then(t => {})
+                                    .catch(c => {});
+                            }
                             reset();
+                            load();
                         })
                         .catch(e => {
                             mostrarAlerta(e.responseJSON.msg, 'danger', 'alertaRegistro');
@@ -575,24 +570,8 @@ $(document).ready(() => {
         });
     };
 
-    $("#MoficarArt").click(async() => {
-        let foto = $("#foto")[0].files[0];
-        let formData = new FormData();
-        if (foto) {
-            formData.append('file', foto);
-            await subirImg(formData)
-                .then(t => {
-                    foto = t.name;
-                })
-                .catch(c => {
-                    console.log(c);
-                    foto = 'none.jpg';
-                });
-        } else {
-            foto = 'none.jpg';
-        }
+    $("#MoficarArt").click(() => {
         let data = {
-            img: foto,
             id: getValue('id'),
             diasC: getValue('diasC'),
             nombre: getValue('nombre'),
@@ -632,11 +611,21 @@ $(document).ready(() => {
                 });
                 if (valid) {
                     actualizarArt(data)
-                        .then(up => {
-                            console.log(up);
+                        .then(async(up) => {
+                            let foto = $("#foto")[0].files[0];
+                            let formData = new FormData();
+                            if (foto) {
+                                formData.append('file', foto);
+                                formData.append('name', new File([], up.id));
+                                await subirImg(formData)
+                                    .then(t => {})
+                                    .catch(c => {});
+                            }
+                            mostrarAlerta("actualizacion exitosa", 'success', 'alertaRegistro');
+                            load();
                         })
                         .catch(e => {
-                            console.log(e);
+                            mostrarAlerta("Ocurrio un error al actualizar", 'danger', 'alertaRegistro');
                         });
                 }
             }).catch(e => {
