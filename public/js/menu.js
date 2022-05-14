@@ -4,9 +4,6 @@ $(document).ready(() => {
         $("#menu").html(`
             <form method="post" id="cambio">
                 <ul class="list-group">
-                    <li name="menu" class="list-group-item list-group-item-secondary d-flex justify-content-between align-items-center hover" title="80">
-                        <input type="submit" class="text-dark link" value="Reportes">
-                    </li>
                     <li class="list-group-item list-group-item-secondary d-flex justify-content-between align-items-center hover">
                         <input type="submit" class="text-dark link" value="Proveedores">
                     </li>
@@ -25,5 +22,9 @@ $(document).ready(() => {
     armarMenu();
 
     $("#salir").click(() => document.cookie = `token="";max-age=0;path=/;`);
+
+    $("#pagina").click(() => window.location = "/");
+
+    $("#nombreUser").text(localStorage.getItem('nombre'));
 
 });

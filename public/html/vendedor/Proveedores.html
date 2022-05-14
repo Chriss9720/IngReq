@@ -20,14 +20,15 @@
 <body class="bg-light">
     <nav class="navbar navbar-expand-sm navbar-dark bg-dark p-0">
         <div class="container">
-            <a href="/" class="navbar-brand">Mi Pagina</a>
+            <div class="p-1 bg-dark text-white text-center click" id="pagina">
+                <h2>
+                    <img src="../../img/icono.png" class="rounded-circle" alt="Cinque Terre" width="54" height="54"> Tienda en linea
+                </h2>
+            </div>
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item dropdown mr-3">
-                    <a href="" class="nav-link dropdown-toggle" data-toggle="dropdown">Bienvenido Jose <i
-                            class="fas fa-user"></i></a>
+                    <a class="nav-link dropdown-toggle click" data-toggle="dropdown"><span id="nombreUser"></span><i class="fas fa-user"></i></a>
                     <div class="dropdown-menu">
-                        <a href="perfil.html" class="dropdown-item hover"><i class="fas fa-user-circle"></i> perfil</a>
-                        <a href="#" class="dropdown-item hover"><i class="fas fa-cog"></i> Configuraciones</a>
                         <a id="salir" href="/#" class="dropdown-item hover"><i class="fas fa-user-times"></i> Salir</a>
                     </div>
                 </li>

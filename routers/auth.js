@@ -13,7 +13,7 @@ ruta.post('/login', (req, res) => {
                 let psw = bcrypt.compareSync(comprador.clave, datos.clave);
                 if (psw) {
                     let token = jwt.sign({ _id: datos._id }, config.get("ConfigTk.SEED"), { expiresIn: config.get("ConfigTk.expired") });
-                    res.json(token);
+                    res.json({ token, nombre: datos.nombre });
                 } else {
                     res.status(403).json({ msg: "Usuario o clave incorrectos", dts: "Clave erronea" });
                 }

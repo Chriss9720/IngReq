@@ -113,4 +113,6 @@ $(document).ready(() => {
             })
     });
 
+    $("#inicio").click(() => window.location = "/");
+
 });

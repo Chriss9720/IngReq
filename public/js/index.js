@@ -102,10 +102,12 @@ $(document).ready(() => {
                 if (valid) {
                     login(data)
                         .then(log => {
-                            document.cookie = `token=${log};max-age=${(24 * 60 * 60)};path=/;`;
+                            document.cookie = `token=${log.token};max-age=${(24 * 60 * 60)};path=/;`;
+                            localStorage.setItem('nombre', log.nombre);
                             $("#acceso")[0].submit();
                         })
                         .catch(e => {
+                            console.log(e);
                             alerta(e.responseJSON.msg);
                         })
                 }
