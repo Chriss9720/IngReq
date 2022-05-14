@@ -32,4 +32,6 @@ ruta.post('/articulo/:id', auth, (req, res) => cargar('usuario/producto', res));
 
 ruta.post('/carrito', auth, (req, res) => cargar('usuario/carrito', res));
 
+ruta.post('/pagar', auth, (req, res) => cargar('usuario/comprar', res));
+
 module.exports = ruta;

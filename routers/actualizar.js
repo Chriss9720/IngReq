@@ -8,6 +8,7 @@ const Articulo = require('../models/Articulo');
 
 const MetodCat = require('../methods/Categorias');
 const MetodArt = require('../methods/Articulo');
+const MetodCup = require('../methods/Carrito');
 
 ruta.put('/Proveedor', auth, async(req, res) => {
     let { idO, idP, nombreP, dirP, telP, rfcP, corP, codP } = req.body;
@@ -63,6 +64,11 @@ ruta.put('/articulo', auth, async(req, res) => {
     } catch (e) {
         res.status(500).json({ msg: "erorr" });
     }
+});
+
+ruta.post('/compra', auth, async(req, res) => {
+    MetodCup.comprar(req.data._id);
+    res.send("ok");
 });
 
 module.exports = ruta;

@@ -226,6 +226,29 @@ const validarEnteros = Joi.object({
     })
 });
 
+const validarTarjeta = Joi.object({
+    numeros: Joi.string().min(4).max(4).pattern(/^\d+$/).required().error(errores => {
+        errores.forEach(e => {
+            switch (e.code) {
+                case 'string.empty':
+                    e.message = "Ingrese un valor";
+                    break;
+                case 'string.pattern.name':
+                case "string.pattern.base":
+                case "string.pattern.invert.name":
+                case "string.pattern.invert.base":
+                    e.message = "valores numericos enteros";
+                    break;
+                case "string.min":
+                case 'string.max':
+                    e.message = "Longitud minima y maxima de 4 por campo";
+                    break;
+            }
+        });
+        return errores;
+    })
+});
+
 const validar = (data, campo, joi, body, id = undefined) => {
     let { error } = joi.validate(body);
     if (error)
@@ -363,6 +386,23 @@ ruta.post('/cantidad', auth, (req, res) => {
     let { cantidad } = req.body;
     let errores = {};
     errores = validar(errores, "errCant", validarEnteros, { entero: cantidad }, 'cantidadIng');
+    res.json(errores);
+});
+
+ruta.post('/compra', auth, (req, res) => {
+    let {
+        tarjeta_1,
+        tarjeta_2,
+        tarjeta_3,
+        tarjeta_4,
+        codigo
+    } = req.body;
+    let errores = {};
+    errores = validar(errores, "err1", validarTarjeta, { numeros: tarjeta_1 }, 'tarjeta_1');
+    errores = validar(errores, "err2", validarTarjeta, { numeros: tarjeta_2 }, 'tarjeta_2');
+    errores = validar(errores, "err3", validarTarjeta, { numeros: tarjeta_3 }, 'tarjeta_3');
+    errores = validar(errores, "err4", validarTarjeta, { numeros: tarjeta_4 }, 'tarjeta_4');
+    errores = validar(errores, "err5", validarTarjeta, { numeros: codigo }, 'codigo');
     res.json(errores);
 });
 

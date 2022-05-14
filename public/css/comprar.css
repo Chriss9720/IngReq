@@ -1,0 +1,38 @@
+.imagen {
+    width: 100%;
+    z-index: 1;
+    position: absolute;
+}
+
+.inicio {
+    padding: 3%;
+    width: 50%;
+    text-align: center;
+    z-index: 2;
+    position: absolute;
+}
+
+.buscador {
+    padding: 3%;
+    width: 80%;
+}
+
+.contenido {
+    padding: 50px;
+    width: 90%;
+    margin: auto;
+    overflow: hidden;
+}
+
+.click {
+    cursor: pointer;
+}
+
+.sin {
+    background: transparent;
+    border: none;
+}
+
+.tarjeta {
+    width: 100px;
+}

@@ -1,5 +1,6 @@
 const Usuario = require('../models/Usuarios');
 const Carrito = require('../models/Carrito');
+const Articulo = require('../models/Articulo');
 
 const addCarrito = async(idU, datos) => {
     let usuario = await Usuario.findById(idU).select('carrito -_id');
@@ -49,8 +50,26 @@ const addArticulo = (idC, idA, cantidad) => {
     return actualizar;
 };
 
+const comprar = async(idU) => {
+    let usuario = await Usuario.findById(idU).select('carrito -_id');
+    let idCarrito = usuario.carrito._id;
+    let carrito = await Carrito.findById(idCarrito).select("articulos");
+    for (let i = 0; i < carrito.articulos.length; i++) {
+        let art = carrito.articulos[i];
+        let idP = art.idA;
+        let arts = await Articulo.findById(idP);
+        let cantidad = arts.cantidad - art.cantidad;
+        await Articulo.findByIdAndUpdate(idP, {
+            $set: { cantidad }
+        });
+    };
+    carrito.articulos = [];
+    await carrito.save();
+};
+
 module.exports = {
     addCarrito,
     crearCarrito,
-    addArticulo
+    addArticulo,
+    comprar
 }
