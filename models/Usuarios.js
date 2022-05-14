@@ -31,7 +31,11 @@ const usuarios = new Schema({
             type: Schema.Types.ObjectId,
             ref: 'Articulo'
         }
-    }]
+    }],
+    carrito: {
+        type: Schema.Types.ObjectId,
+        ref: 'Carrito'
+    }
 });
 
 module.exports = Mongoose.model("Usuarios", usuarios);

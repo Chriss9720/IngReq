@@ -359,4 +359,11 @@ ruta.post('/cupon', auth, (req, res) => {
     res.json(errores);
 });
 
+ruta.post('/cantidad', auth, (req, res) => {
+    let { cantidad } = req.body;
+    let errores = {};
+    errores = validar(errores, "errCant", validarEnteros, { entero: cantidad }, 'cantidadIng');
+    res.json(errores);
+});
+
 module.exports = ruta;

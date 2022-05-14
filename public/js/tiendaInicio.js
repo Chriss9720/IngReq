@@ -68,17 +68,13 @@ $(document).ready(() => {
                 let data = datos[i];
                 contenido.innerHTML += `
                     <div class="col-4 row p-2 mt-3">
-                        <div class="col-12 d-flex justify-content-around">
-                            <button class="btn btn-dark">Comprar producto</button>
-                            <button class="btn btn-dark">Añadir al carrito</button>
-                        </div>
                         <div class="col-12 mt-1 mb-1">
-                            <img src="../img/${data.img}" class="img-fluid">
+                            <img src="../img/${data.img}" class="img-fluid click" name="ver" id="img_${i}">
                         </div>
                         <div class="col-12">
                             <div class="d-flex flex-column text-center">
-                                <h1>${data.nombre}</h1>
-                                <h2>${data.precioV}</h2>
+                                <h1 class="click" name="ver" id="name_${i}">${data.nombre}</h1>
+                                <h2 class="click" name="ver" id="pre_${i}">$${data.precioV}</h2>
                             </div>
                         </div>
                     </div>
@@ -88,6 +84,11 @@ $(document).ready(() => {
             }
         }
         pie(pagina, max);
+        $("[name='ver']").click(evt => {
+            let pos = evt.target.id.split('_')[1];
+            $("#datos").attr('action', `/articulo/${datos[pos]._id}`);
+            $("#datos").submit();
+        })
     };
 
     const leerArt = () => {

@@ -67,4 +67,9 @@ ruta.post('/articulos', auth, async(req, res) => {
     res.json(lista || []);
 });
 
+ruta.post('/articulo/:id', auth, async(req, res) => {
+    let articulo = await Articulos.findById({ _id: req.params.id }).select("cantidad img id precioV nombre");
+    res.json(articulo);
+});
+
 module.exports = ruta;

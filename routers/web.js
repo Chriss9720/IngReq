@@ -28,4 +28,6 @@ ruta.post('/Administrar', auth, (req, res) => cargar('vendedor/Vendedor', res));
 
 ruta.post('/Administrar/:seccion', auth, (req, res) => cargar(`vendedor/${req.params.seccion}`, res));
 
+ruta.post('/articulo/:id', auth, (req, res) => cargar('usuario/producto', res));
+
 module.exports = ruta;

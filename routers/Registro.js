@@ -8,6 +8,7 @@ const MetodCat = require('../methods/Categorias');
 const MethodProv = require('../methods/proveedores');
 const MetodArt = require('../methods/Articulo');
 const MetodCup = require('../methods/Cupon');
+const MetodCarr = require('../methods/Carrito');
 
 ruta.post('/Usuario', (req, res) => {
     MetodUser.registrarUsuario(req.body)
@@ -109,6 +110,11 @@ ruta.post('/cupon', auth, (req, res) => {
         .catch(e => {
             res.status(500).json({ msg: "Ocurrio un error al crear el cupon, intente cambiando el id" });
         });
+});
+
+ruta.post('/carrito', auth, async(req, res) => {
+    MetodCarr.addCarrito(req.data._id, req.body);
+    res.send("ok");
 });
 
 module.exports = ruta;

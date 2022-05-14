@@ -2,98 +2,61 @@
 <html lang="en">
 
 <head>
-    <title>Tienda en linea</title>
+    <!-- Required meta tags -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-    <style>
-        .imagen {
-            width: 100%;
-            z-index: 1;
-            position: absolute;
-        }
-
-        .inicio {
-            padding: 3%;
-            width: 50%;
-            text-align: center;
-            z-index: 2;
-            position: absolute;
-        }
-
-        .buscador {
-            padding: 3%;
-            width: 80%;
-        }
-
-        .contenido {
-            padding: 50px;
-            width: 90%;
-            margin: auto;
-            overflow: hidden;
-        }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Tienda en linea</title>
+    <script src="https://kit.fontawesome.com/38863894bb.js" crossorigin="anonymous"></script>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!--Font-->
+    <script src="https://kit.fontawesome.com/0b3284a19f.js" crossorigin="anonymous"></script>
+    <!--Css-->
+    <link rel="stylesheet" href="../../css/producto.css">
 </head>
 
 <body>
 
     <div class="p-1 bg-dark text-white text-center">
-        <h2> <img src="./img/icono.png" class="rounded-circle" alt="Cinque Terre" width="54" height="54"> Tienda en
-            linea
+        <h2>
+            <img src="../../img/logo.jpg" class="rounded-circle" alt="Cinque Terre" width="54" height="54"> Tienda en linea
         </h2>
     </div>
 
-    <nav class="navbar navbar-expand bg-secondary navbar-dark">
-        <div class="menu">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link active" href="InicioUsuario.html">Inicio</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="servicios.html">Carrito </a>
-                </li>
-            </ul>
-        </div>
+    <nav class="navbar navbar-expand bg-secondary navbar-dark" id="menu">
     </nav>
 
     <div class="contenido">
         <div class="container mt-5">
             <div class="row">
-                <div class="col-sm-4">
-                    <img src="./img/mause.jpg">
-
+                <div class="col-6">
+                    <img id="img" class="img-fluid">
                 </div>
-                <div class="col-sm-8">
-                    <h4>Free wolf X13 Mouse Inalámbrico Gamer, Ratón Inalámbrico Recargable Luz RGB, 7 Botone y 3 DPI
-                        Ajustable, Clic Silencioso, Reposo Automático, Preciso, Rápido, Ergonómico, para Video Juegos o
-                        en Oficina</h4>
-                    <h5>$ 259 </h5><br>
-                    <label><input type="checkbox"> Aplicar cupon <img src="./img/cupon.png" width="50"
-                            height="30"></label>
-                    <br>
-                    <p>
-                        <b>Tipo de conector:</b> Inalámbrico<br>
-                        <b>Usos recomendados para producto:</b> Videojuegos, Oficina<br>
-                        Marca: Free wolf<br>
-                        <b>Número de botones:</b> 7<br>
-                        <b> Peso del producto:</b> 0.16 Kilogramos<br><br>
-                        <b>Acerca de este artículo</b><br>
-                        Portabilidad y Comodidad: el diseño ligero y delgado hace que sea ideal para viajes y se puede
-                        colocar fácilmente en una bolsa de ordenador portátil o bolsillo.los efectos de contorno,
-                        antisudor y agradable al tacto permiten obtener la máxima comodidad y apoyo. Un anillo íntimo y
-                        un descanso para los dedos pequeños proporcionan una comodidad extra.
-                        <br>Diseño Genial: Diseño especial sin sonido para los botones derecho e izquierdo, lo ayuda a
-                        crear un ambiente tranquilo sin molestar a los demás. 7 colores de LED suaves cambian
-                        alternativamente, no pueden configurarse en un color específico o apagarse.
-                    </p>
-                    <button class="btn btn-dark"  onclick="location.href='comprar.html'" align="center">Comprar producto</button> 
-                    <button class="btn btn-dark"  onclick="location.href='sus.html'" align="center">Añadir al carrito</button>
+                <div class="col-6 d-flex flex-column">
+                    <h4 id="nombre"></h4>
+                    <h5>$ <span id="precioV"></span> </h5>
+                    <h5>Disponibles: <span id="cantidad"></span></h5>
+                    <div class="form-group">
+                        <label for="" class="h5">Comprar</label>
+                        <input type="text" class="form-control" id="cantidadIng" value="1">
+                        <div id="errCant" class="invalid-feedback"></div>
+                    </div>
+                    <div class="d-flex justify-content-around">
+                        <button class="btn btn-dark">Comprar producto</button>
+                        <button id="addCar" class="btn btn-dark">Añadir al carrito</button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js " integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin=" anonymous "></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js " integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1 " crossorigin="anonymous "></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js " integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM " crossorigin="anonymous "></script>
+    <!--Js personal-->
+    <script src="../../js/menuTienda.js"></script>
+    <script src="../../js/producto.js"></script>
 </body>
 
 </html>
