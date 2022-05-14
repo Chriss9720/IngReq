@@ -30,4 +30,6 @@ ruta.post('/Administrar/:seccion', auth, (req, res) => cargar(`vendedor/${req.pa
 
 ruta.post('/articulo/:id', auth, (req, res) => cargar('usuario/producto', res));
 
+ruta.post('/carrito', auth, (req, res) => cargar('usuario/carrito', res));
+
 module.exports = ruta;

@@ -89,4 +89,6 @@ $(document).ready(() => {
             .catch(e => console.log(e));
     });
 
+    $("[name='comprar']").click(() => $("#irCarrito").submit());
+
 });

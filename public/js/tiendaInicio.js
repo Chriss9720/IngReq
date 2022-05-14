@@ -114,4 +114,6 @@ $(document).ready(() => {
 
     load();
 
+    $("[name='comprar']").click(() => $("#irCarrito").submit());
+
 });

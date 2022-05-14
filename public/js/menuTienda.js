@@ -8,8 +8,10 @@ $(document).ready(() => {
                         <input class="nav-link sin" type="submit" value="Inicio">
                     </form>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="servicios.html">Carrito </a>
+                <li class="nav-item click">
+                    <form action="/carrito" method="post" id="irCarrito">
+                        <a class="nav-link click" name="comprar">Carrito </a>
+                    </form>
                 </li>
                 <li class="nav-item">
                     <form action="/Administrar" method="post">

@@ -72,4 +72,19 @@ ruta.post('/articulo/:id', auth, async(req, res) => {
     res.json(articulo);
 });
 
+ruta.post('/carrito', auth, async(req, res) => {
+    let carrito = await Usuario.findById(req.data._id)
+        .populate({
+            path: 'carrito',
+            model: 'Carrito',
+            populate: {
+                path: 'articulos.idA',
+                model: 'Articulo',
+                select: { _id: 0, __v: 0 }
+            }
+        })
+        .select('carrito');
+    res.json(carrito.carrito.articulos);
+})
+
 module.exports = ruta;
