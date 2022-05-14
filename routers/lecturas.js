@@ -45,4 +45,19 @@ ruta.post('/misProductos', auth, async(req, res) => {
     res.json(lista.productos || []);
 });
 
+ruta.post('/cupones', auth, async(req, res) => {
+    let lista = await Usuario.findById(req.data._id)
+        .populate({
+            path: 'cupones.idC',
+            model: 'Cupones',
+            select: { _id: 0, __v: 0 },
+            populate: {
+                path: 'categorias.cat',
+                model: 'Categorias',
+                select: { _id: 0, __v: 0 },
+            }
+        }).select("idC");
+    res.json(lista.cupones || [])
+});
+
 module.exports = ruta;

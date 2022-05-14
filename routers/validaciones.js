@@ -228,11 +228,12 @@ const validarEnteros = Joi.object({
 
 const validar = (data, campo, joi, body, id = undefined) => {
     let { error } = joi.validate(body);
-    if (error) data[campo] = {
-        s: true,
-        msg: error.message,
-        id: id || Object.keys(body)[0]
-    }
+    if (error)
+        data[campo] = {
+            s: true,
+            msg: error.message,
+            id: id || Object.keys(body)[0]
+        }
     else {
         data[campo] = {
             s: false,
@@ -334,6 +335,27 @@ ruta.post('/articulo', auth, (req, res) => {
     errores = validar(errores, "errPuntoR", validarEnteros, { entero: puntoR }, 'puntoR');
     errores = validar(errores, "errIdProv", validarId, { id: (prov || "") }, 'provSel');
 
+    res.json(errores);
+});
+
+ruta.post('/cupon', auth, (req, res) => {
+    let { id, desc, cat, cant } = req.body;
+    let errores = {};
+    errores = validar(errores, "errId", validarId, { id });
+    errores = validar(errores, "errDesc", validarPrecio, { precio: desc }, 'desc');
+    errores = validar(errores, "errCant", validarEnteros, { entero: cant }, 'cant');
+    if (cat && cat.length > 0) {
+        errores["errCat"] = {
+            s: false,
+            id: "catSel"
+        }
+    } else {
+        errores["errCat"] = {
+            s: true,
+            msg: "Seleccione al menos una categoria",
+            id: "catSel"
+        }
+    }
     res.json(errores);
 });
 

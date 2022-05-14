@@ -262,7 +262,6 @@ $(document).ready(() => {
         validarDatos(data)
             .then(v => {
                 let valid = true;
-                console.log(v);
                 Object.keys(v).forEach(k => {
                     let campo = $(`#${v[k].id}`)[0];
                     valid = valid && !v[k].s;

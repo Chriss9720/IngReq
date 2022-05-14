@@ -7,6 +7,7 @@ const MetodUser = require('../methods/Usuario');
 const MetodCat = require('../methods/Categorias');
 const MethodProv = require('../methods/proveedores');
 const MetodArt = require('../methods/Articulo');
+const MetodCup = require('../methods/Cupon');
 
 ruta.post('/Usuario', (req, res) => {
     MetodUser.registrarUsuario(req.body)
@@ -92,6 +93,21 @@ ruta.post('/articulo', auth, (req, res) => {
             let name = Object.keys(err.keyValue);
             let msj = `ocurrio un error al crear el producto\n${name[0]}: ${err.keyValue[name[0]]}`;
             res.status(400).json({ msg: msj });
+        });
+});
+
+ruta.post('/cupon', auth, (req, res) => {
+    let { id, desc, cat, cant } = req.body;
+    MetodCup.registrarCupon(id, desc, cant)
+        .then(async(cup) => {
+            await MetodCup.ligarCupUsuario(req.data._id, cup._id);
+            cat.forEach(async(c) => {
+                await MetodCup.ligarCatCupon(cup._id, c.cat);
+            });
+            res.json({ msg: "Registro Exitoso" });
+        })
+        .catch(e => {
+            res.status(500).json({ msg: "Ocurrio un error al crear el cupon, intente cambiando el id" });
         });
 });
 
