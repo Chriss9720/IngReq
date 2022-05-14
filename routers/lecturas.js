@@ -3,8 +3,8 @@ const auth = require('../middlewares/auth');
 const ruta = express.Router();
 
 const Usuario = require('../models/Usuarios');
-const Proveedor = require('../models/Proveedores');
 const Articulos = require('../models/Articulo');
+const Categorias = require('../models/Categorias');
 
 ruta.post('/proveedores', auth, async(req, res) => {
     let lista = await Usuario.findById(req.data._id)
@@ -84,7 +84,12 @@ ruta.post('/carrito', auth, async(req, res) => {
             }
         })
         .select('carrito');
-    res.json(carrito.carrito.articulos);
-})
+    res.json(carrito.carrito.articulos || []);
+});
+
+ruta.post('/categorias/arts', auth, async(req, res) => {
+    let cats = await Categorias.find().select("nombre -_id");
+    res.json(cats || []);
+});
 
 module.exports = ruta;

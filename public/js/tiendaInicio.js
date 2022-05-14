@@ -1,6 +1,7 @@
 $(document).ready(() => {
 
     let datos = [];
+    let cat = [];
 
     const evento = (evt, max) => {
         if (evt.target.nodeName == 'A' && !evt.target.children[0]) {
@@ -103,13 +104,51 @@ $(document).ready(() => {
         });
     };
 
+    const leerCats = () => {
+        return new Promise((resolve, reject) => {
+            $.ajax({
+                url: '/leer/categorias/arts',
+                type: 'POST',
+                datatype: 'json',
+                success: s => resolve(s),
+                error: e => reject(e)
+            })
+        });
+    };
+
+    const activo = cat => (cat.act) ? 'success' : 'secondary';
+
+    const armarCats = () => {
+        let html = "";
+        cat.forEach(c => {
+            html += `
+                <label class="h4 mr-1 ml-1 mb-1 mt-1 click">
+                    <span class="badge badge-${activo(c)}">${c.nombre}</span>
+                </label>
+            `;
+        });
+        $("#categorias").html(html);
+    };
+
     const load = () => {
         leerArt()
             .then(arts => {
                 datos = arts;
                 cargar(1);
             })
-            .catch(e => console.log(e))
+            .catch(e => console.log(e));
+        leerCats()
+            .then(cats => {
+                cats.forEach(c => {
+                    cat.push({
+                        nombre: c.nombre,
+                        pos: cat.length,
+                        act: true
+                    });
+                })
+                armarCats();
+            })
+            .catch(e => console.log(e));
     };
 
     load();
